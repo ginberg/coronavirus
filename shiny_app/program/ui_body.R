@@ -33,13 +33,21 @@ body1 <- shinydashboard::box(id     = "bodyElement1",
                                                   "Download table data"))
 
 body2 <- shinydashboard::box(id     = "bodyElement2",
-                             title  = "Map",
-                             width  = 12,
+                             title  = "Cases over Time",
+                             width  = 6,
                              status = "primary",
                              collapsible = TRUE,
                              collapsed   = FALSE,
-                             leafletOutput("map", height = "600px"))
+                             canvasXpressOutput("chart", height = "700px"))
+
+body3 <- shinydashboard::box(id     = "bodyElement3",
+                             title  = "Map",
+                             width  = 6,
+                             status = "primary",
+                             collapsible = TRUE,
+                             collapsed   = FALSE,
+                             leafletOutput("map", height = "700px"))
 
 # -- Register Elements in the ORDER SHOWN in the UI
 
-add_ui_body(list(body1, body2), append = FALSE)
+add_ui_body(list(body1, body2, body3), append = FALSE)

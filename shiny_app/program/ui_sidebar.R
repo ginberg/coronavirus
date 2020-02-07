@@ -23,10 +23,12 @@
 # ----------------------------------------
 
 # -- Create Basic Elements
-totals_text <- div(style = "padding-top: 5px;", uiOutput("totalStats"))
+totals_text <- div(style = "padding-top: 5px;", uiOutput("total_stats"))
+
+last_update_text <- div(style = "padding-top: 90%;", uiOutput("last_update"))
 
 # -- Register Basic Elements in the ORDER SHOWN in the UI
-add_ui_sidebar_basic(list(totals_text), append = FALSE)
+add_ui_sidebar_basic(list(totals_text, last_update_text), append = FALSE)
 
 
 # -- Create Advanced Elements

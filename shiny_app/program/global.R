@@ -10,8 +10,13 @@
 # ----------------------------------------
 
 # -- IMPORTS --
+library(googlesheets4)
+library(dplyr)
+library(leaflet)
 library(canvasXpress)
 library(glue)
+library(renv)
+library(plyr)
 
 # -- Setup your Application --
 set_app_parameters(title = "2019-nCoV Global Cases",

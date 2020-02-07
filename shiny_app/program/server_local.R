@@ -34,7 +34,7 @@ source(paste("program", "fxn", "supporting_data.R", sep = .Platform$file.sep))
 source(paste("program", "fxn", "supporting_plots.R", sep = .Platform$file.sep))
 
 get_data <- reactive({
-    data %>% select(1, 2, 5, 6, 7) %>% arrange(desc(Confirmed))
+    map_data %>% select(1, 2, 5, 6, 7) %>% arrange(desc(Confirmed))
 })
 
 # ----------------------------------------
@@ -50,17 +50,35 @@ callModule(downloadableTable, "coronaDT",  ss_userAction.Log,
 
 
 output$map <- renderLeaflet({
-    leaflet(data) %>% 
-        setView(lng = 20, lat = 31, zoom = 2.5) %>%
+    leaflet(map_data) %>% 
+        setView(lng = 112.27070, lat = 30.97564, zoom = 5) %>%
         addTiles() %>%
-        addCircles(lng = ~Lon, lat = ~Lat, weight = 1, radius = ~((sqrt(Confirmed) + 25) * 1000), popup = ~Province, color = "red")
+        addCircles(lng = ~Lon, lat = ~Lat, weight = 1, radius = ~((sqrt(Confirmed) + 25) * 1000), popup = ~Province, color = "#FF0000")
 })
 
-output$totalStats <- renderUI({
-    tags$div(style="text-align:center",
-             tags$div(tags$h3("Confirmed:"), tags$h2(sum(data$Confirmed, na.rm = T))),
-             tags$div(tags$h3("Deaths:"), tags$h2(sum(data$Death, na.rm = T))),
-             tags$div(tags$h3("Recovered:"), tags$h2(sum(data$Recovered, na.rm = T))))
+output$chart <- renderCanvasXpress({
+    canvasXpress(
+        data              = line_data,
+        graphOrientation  = "vertical",
+        graphType         = "Line",
+        lineType          = "spline",
+        showTransition    = FALSE,
+        smpLabelRotate    = 45,
+        smpTitle          = "Date",
+        smpTitleFontStyle = "italic",
+        theme             = "CanvasXpress",
+        title             = "2019-nCoV over time")
 })
-    
+
+output$total_stats <- renderUI({
+    tags$div(style="text-align:center",
+             tags$div(tags$h3("Confirmed:"), tags$h2(style="color:orange", sum(map_data$Confirmed, na.rm = T))),
+             tags$div(tags$h3("Deaths:"), tags$h2(style="color:red", sum(map_data$Death, na.rm = T))),
+             tags$div(tags$h3("Recovered:"), tags$h2(style="color:green", sum(map_data$Recovered, na.rm = T))))
+})
+
+output$last_update <- renderUI({
+    tags$div(style="text-align:center",
+             tags$div(tags$h4("Last update:"), tags$h4(format(Sys.time(), "%b %d %Y %H:%M"))))
+})    
     
