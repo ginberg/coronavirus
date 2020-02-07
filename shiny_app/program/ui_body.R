@@ -32,21 +32,21 @@ body1 <- shinydashboard::box(id     = "bodyElement1",
                                                   list("csv", "tsv"),
                                                   "Download table data"))
 
-body2 <- shinydashboard::box(id     = "bodyElement2",
-                             title  = "Cases over Time",
-                             width  = 6,
-                             status = "primary",
-                             collapsible = TRUE,
-                             collapsed   = FALSE,
-                             canvasXpressOutput("chart", height = "700px"))
-
-body3 <- shinydashboard::box(id     = "bodyElement3",
+body2 <- shinydashboard::box(id     = "bodyElement3",
                              title  = "Map",
-                             width  = 6,
+                             width  = 7,
                              status = "primary",
                              collapsible = TRUE,
                              collapsed   = FALSE,
                              leafletOutput("map", height = "700px"))
+
+body3 <- shinydashboard::box(id     = "bodyElement2",
+                             title  = "Cases over Time",
+                             width  = 5,
+                             status = "primary",
+                             collapsible = TRUE,
+                             collapsed   = FALSE,
+                             canvasXpressOutput("chart", height = "670px"))
 
 # -- Register Elements in the ORDER SHOWN in the UI
 

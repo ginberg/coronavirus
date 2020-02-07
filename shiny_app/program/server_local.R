@@ -53,10 +53,7 @@ callModule(downloadableTable, "coronaDT",  ss_userAction.Log,
 
 
 output$map <- renderLeaflet({
-    leaflet(g_map_data) %>% 
-        setView(lng = 112.27070, lat = 30.97564, zoom = 5) %>%
-        addTiles() %>%
-        addCircles(lng = ~Lon, lat = ~Lat, weight = 1, radius = ~((sqrt(Confirmed) + 25) * 1000), popup = ~Province, color = "#FF0000")
+    get_map_chart()
 })
 
 output$chart <- renderCanvasXpress({
