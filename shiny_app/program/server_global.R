@@ -63,11 +63,11 @@ get_line_data <- function(data, tab_name) {
 #     left_join(recovered_cases) %>%
 #     left_join(death_cases)
 
-# line_data <- rbind.fill(get_line_data(confirmed_data, confirmed),
-#                         get_line_data(recovered_data, recovered),
-#                         get_line_data(death_data, death)) %>% tibble::column_to_rownames("Type")
+line_data <- rbind.fill(get_line_data(confirmed_data, confirmed),
+                        get_line_data(death_data, death),
+                        get_line_data(recovered_data, recovered)) %>% tibble::column_to_rownames("Type")
 
 map_data  <- readRDS("program/data/map_data.rds")
 line_data <- readRDS("program/data/line_data.rds")
 
-
+colors <- c("orange", "red", "green")

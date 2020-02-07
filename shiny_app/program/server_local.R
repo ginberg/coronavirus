@@ -62,19 +62,20 @@ output$chart <- renderCanvasXpress({
         graphOrientation  = "vertical",
         graphType         = "Line",
         lineType          = "spline",
-        showTransition    = FALSE,
         smpLabelRotate    = 45,
         smpTitle          = "Date",
         smpTitleFontStyle = "italic",
-        theme             = "CanvasXpress",
-        title             = "2019-nCoV over time")
+        colors            = colors,
+        xAxis2Show        = FALSE,
+        title             = "2019-nCoV over time",
+        smpLabelScaleFontFactor = 0.3)
 })
 
 output$total_stats <- renderUI({
     tags$div(style="text-align:center",
-             tags$div(tags$h3("Confirmed:"), tags$h2(style="color:orange", sum(map_data$Confirmed, na.rm = T))),
-             tags$div(tags$h3("Deaths:"), tags$h2(style="color:red", sum(map_data$Death, na.rm = T))),
-             tags$div(tags$h3("Recovered:"), tags$h2(style="color:green", sum(map_data$Recovered, na.rm = T))))
+             tags$div(tags$h3("Confirmed:"), tags$h2(style=glue("color:{colors[1]}"), sum(map_data$Confirmed, na.rm = T))),
+             tags$div(tags$h3("Deaths:"), tags$h2(style=glue("color:{colors[2]}"), sum(map_data$Death, na.rm = T))),
+             tags$div(tags$h3("Recovered:"), tags$h2(style=glue("color:{colors[3]}"), sum(map_data$Recovered, na.rm = T))))
 })
 
 output$last_update <- renderUI({
