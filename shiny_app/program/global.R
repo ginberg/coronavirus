@@ -11,12 +11,16 @@
 
 # -- IMPORTS --
 library(googlesheets4)
+library(plyr)
 library(dplyr)
 library(leaflet)
 library(canvasXpress)
 library(glue)
 library(renv)
-library(plyr)
+
+source(paste("program", "fxn", "supporting_data.R", sep = .Platform$file.sep))
+source(paste("program", "fxn", "supporting_plots.R", sep = .Platform$file.sep))
+source(paste("program", "fxn", "supporting_misc.R", sep = .Platform$file.sep))
 
 # -- Setup your Application --
 set_app_parameters(title = "2019-nCoV Global Cases",
@@ -24,3 +28,8 @@ set_app_parameters(title = "2019-nCoV Global Cases",
                    showlog = FALSE,
                    app_version = "1.0.0")
 # -- PROGRAM --
+
+g_map_data  <- get_map_data()
+g_line_data <- get_line_data()
+
+g_colors <- c("orange", "red", "green")

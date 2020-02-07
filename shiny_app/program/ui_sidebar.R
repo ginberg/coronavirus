@@ -28,22 +28,19 @@ totals_text <- div(style = "padding-top: 5px;", uiOutput("total_stats"))
 last_update_text <- div(style = "padding-top: 90%;", uiOutput("last_update"))
 
 # -- Register Basic Elements in the ORDER SHOWN in the UI
-add_ui_sidebar_basic(list(totals_text, last_update_text), append = FALSE)
+add_ui_sidebar_basic(list(totals_text, last_update_text), append = FALSE, tabname = "Totals")
 
 
 # -- Create Advanced Elements
-# advancedtext <- div(style = "padding-top: 5px;",
-#                     helpText(align = "center",
-#                              style = "info",
-#                             "The ADVANCED tab is intended for less-commonly ",
-#                             "used options and settings for the application."))
-# 
-# resetinfo <- div(style = "padding-left: 5px;",
-#                  p("The reset functionality (button below) is a part of the ",
-#                    "framework and completely resets a user's session and ",
-#                    "rolls over their log.  Nothing needs to be done by the ",
-#                    "program code for this to work."))
-# 
-# 
-# # -- Register Advanced Elements in the ORDER SHOWN in the UI
-# add_ui_sidebar_advanced(list(advancedtext, resetinfo), append = FALSE)
+country_select <- selectizeInput("countrySel",
+                                 label    = ui_tooltip('countryTooltip', "Country", "Select a country"),
+                                 choices  = NULL,
+                                 multiple = FALSE,
+                                 width    = "100%")
+
+country_text <- div(style = "padding-top: 5px;",
+                    uiOutput("country_stats"))
+
+
+# -- Register Advanced Elements in the ORDER SHOWN in the UI
+add_ui_sidebar_advanced(list(country_select, country_text), append = FALSE, tabname = "Per Country")
