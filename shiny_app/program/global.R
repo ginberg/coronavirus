@@ -18,6 +18,8 @@ library(canvasXpress)
 library(glue)
 library(renv)
 
+g_live_data <- FALSE
+
 source(paste("program", "fxn", "supporting_data.R", sep = .Platform$file.sep))
 source(paste("program", "fxn", "supporting_plots.R", sep = .Platform$file.sep))
 source(paste("program", "fxn", "supporting_misc.R", sep = .Platform$file.sep))
