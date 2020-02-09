@@ -31,7 +31,9 @@
 
 # -- FUNCTIONS --
 
-get_data <- reactive({
+autoInvalidate <- reactiveTimer(g_refresh_period)
+ 
+get_table_data <- reactive({
     g_map_data %>% select(1, 2, 5, 6, 7) %>% arrange(desc(Confirmed))
 })
 
@@ -44,11 +46,17 @@ observe({
                          choices = unique(g_map_data$Country))
 })
 
+observeEvent( autoInvalidate(), {
+    autoInvalidate()
+    loginfo("restarting app")
+    session$reload()
+}, ignoreInit = T)
+
 # -- Setup Download Modules with Functions we want called
 callModule(downloadableTable, "coronaDT",  ss_userAction.Log,
            "exampletable",
-           list(csv = get_data, tsv = get_data),
-           get_data,
+           list(csv = get_table_data, tsv = get_table_data),
+           get_table_data,
            rownames = FALSE)
 
 

@@ -18,11 +18,9 @@ library(canvasXpress)
 library(glue)
 library(renv)
 
-g_live_data <- FALSE
-
-if (g_live_data) {
-    options(gargle_oauth_email = "g.inberg@gmail.com")
-}
+g_live_data <- TRUE
+options(gargle_oauth_email = "g.inberg@gmail.com")
+g_refresh_period <- 6*60*60*1000
 
 source(paste("program", "fxn", "supporting_data.R", sep = .Platform$file.sep))
 source(paste("program", "fxn", "supporting_plots.R", sep = .Platform$file.sep))
@@ -40,3 +38,4 @@ g_line_data <- get_line_data()
 
 g_colors    <- c("orange", "red", "green")
 shinyOptions(plot.autocolors = TRUE)
+
