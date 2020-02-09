@@ -23,7 +23,7 @@
 # ----------------------------------------
 
 # -- Create Basic Elements
-totals_text <- div(style = "padding-top: 5px;", uiOutput("total_stats"))
+totals_text <- div(style = "padding-top: 94px;", uiOutput("total_stats"))
 
 last_update_text <- div(style = "padding-top: 90%;", uiOutput("last_update"))
 
@@ -38,7 +38,7 @@ country_select <- selectizeInput("countrySel",
                                  multiple = FALSE,
                                  width    = "100%")
 
-country_text <- div(style = "padding-top: 5px;",
+country_text <- div(style = "padding-top: 15px;",
                     uiOutput("country_stats"))
 
 

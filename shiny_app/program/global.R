@@ -34,4 +34,5 @@ set_app_parameters(title = "2019-nCoV Global Cases",
 g_map_data  <- get_map_data()
 g_line_data <- get_line_data()
 
-g_colors <- c("orange", "red", "green")
+g_colors    <- c("orange", "red", "green")
+shinyOptions(plot.autocolors = TRUE)

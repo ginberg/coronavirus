@@ -65,8 +65,11 @@ output$total_stats <- renderUI({
 })
 
 output$last_update <- renderUI({
+    dates  <- strptime(colnames(g_line_data), format = "%m/%d/%Y %I:%M %p")
+    dates  <- rev(dates[order(dates)])
+    latest <- dates[!is.na(dates)][1]
     tags$div(style="text-align:center",
-             tags$div(tags$h4("Last update:"), tags$h4(format(Sys.time(), "%b %d %Y %H:%M"))))
+             tags$div(tags$h4("Last update:"), tags$h4(format(latest, "%b %d %Y %H:%M"))))
 })
 
 output$country_stats <- renderUI({
