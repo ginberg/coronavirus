@@ -20,6 +20,10 @@ library(renv)
 
 g_live_data <- FALSE
 
+if (g_live_data) {
+    options(gargle_oauth_email = "g.inberg@gmail.com")
+}
+
 source(paste("program", "fxn", "supporting_data.R", sep = .Platform$file.sep))
 source(paste("program", "fxn", "supporting_plots.R", sep = .Platform$file.sep))
 source(paste("program", "fxn", "supporting_misc.R", sep = .Platform$file.sep))
