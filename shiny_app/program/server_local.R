@@ -72,6 +72,12 @@ output$total_stats <- renderUI({
     get_stats_block(g_map_data)
 })
 
+output$about_text <- renderUI({
+    tags$div(style="text-align:center;",
+             "This app visualizes the spread of the Coronavirus 2019 using data from John Hopkins University. The data is refreshed every 6 hours.",
+             tags$p(), tags$a(href='https://github.com/ginberg/coronavirus', "Code on github"))
+})
+
 output$last_update <- renderUI({
     dates  <- strptime(colnames(g_line_data), format = "%m/%d/%Y %I:%M %p")
     dates  <- rev(dates[order(dates)])

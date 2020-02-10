@@ -18,7 +18,7 @@ library(canvasXpress)
 library(glue)
 library(renv)
 
-g_live_data <- TRUE
+g_live_data <- FALSE
 options(gargle_oauth_email = "g.inberg@gmail.com")
 g_refresh_period <- 6*60*60*1000
 

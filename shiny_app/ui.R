@@ -19,7 +19,7 @@ source(paste("program", "ui_body.R", sep = .Platform$file.sep),
        local = TRUE)
 
 
-dashboardPagePlus(periscope:::fw_create_header_plus(),
+dashboardPagePlus(periscope:::fw_create_header_plus(sidebar_right_icon = "info-circle"),
                   periscope:::fw_create_sidebar(resetbutton = FALSE),
                   periscope:::fw_create_body(),
                   periscope:::fw_create_right_sidebar(),

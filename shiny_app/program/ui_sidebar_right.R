@@ -23,23 +23,12 @@
 
 # -- Create Elements
 
-# tab1 <- rightSidebarTabContent(
-#     id = 1,
-#     icon = "desktop",
-#     title = "Tab 1 - Plots",
-#     active = TRUE,
-#     checkboxInput("enableGGPlot", "Enable GGPlot", value = TRUE),
-#     checkboxInput("enableLatticePlot", "Enable Lattice Plot", value = TRUE),
-#     checkboxInput("enableCXPlot", "Enable CanvasXpress Plot", value = TRUE))
-# 
-# tab2 <- rightSidebarTabContent(
-#     id = 2,
-#     title = "Tab 2 - Datatable")
-# 
-# tab3 <- rightSidebarTabContent(
-#     id = 3,
-#     title = "Tab 3 - Other",
-#     icon = "paint-brush")
-# 
+tab1 <- rightSidebarTabContent(
+    id = 1,
+    icon = NULL,
+    title = NULL,
+    active = TRUE,
+    uiOutput("about_text"))
+
 # # -- Register Basic Elements in the ORDER SHOWN in the UI
-# add_ui_sidebar_right(list(tab1, tab2, tab3))
+add_ui_sidebar_right(list(tab1))
