@@ -32,22 +32,19 @@ body1 <- shinydashboard::box(id     = "bodyElement1",
                                                   list("csv", "tsv"),
                                                   "Download table data"))
 
-body2 <- shinydashboard::box(id     = "bodyElement3",
-                             title  = "Map",
-                             width  = 7,
-                             status = "primary",
-                             collapsible = TRUE,
-                             collapsed   = FALSE,
-                             leafletOutput("map", height = "700px"))
+timePanel    <- tabPanel("Evolution in Time",
+                         canvasXpressOutput("chart", height = "670px"))
 
-body3 <- shinydashboard::box(id     = "bodyElement2",
-                             title  = "Cases over Time",
-                             width  = 5,
-                             status = "primary",
-                             collapsible = TRUE,
-                             collapsed   = FALSE,
-                             canvasXpressOutput("chart", height = "670px"))
+mapPanel     <- tabPanel("World Map",
+                         leafletOutput("map", height = "700px"))
+
+body2 <- tabBox(id       = "outputTab",
+                title    = NULL,
+                width    = 12,
+                selected = "Evolution in Time",
+                timePanel,
+                mapPanel)
 
 # -- Register Elements in the ORDER SHOWN in the UI
 
-add_ui_body(list(body1, body2, body3), append = FALSE)
+add_ui_body(list(body1, body2), append = FALSE)

@@ -12,7 +12,19 @@ get_map_data <- function(data, tab_name) {
 }
 
 get_line_data <- function(data, tab_name) {
-    data %>% select(-c(3,4,5)) %>% summarise_if(is.numeric, sum, na.rm = TRUE) %>%
+    data %>% 
+        select(-c(3,4)) %>% 
+        summarise_if(is.numeric, sum, na.rm = TRUE) %>%
+        t() %>% as.data.frame() %>%
+        tibble::rownames_to_column("date") %>% 
+        mutate(date = gsub(" .*", "", date)) %>% 
+        mutate(date = gsub("/20$", "/2020", date)) %>%
+        mutate(date = as.Date(date, "%m/%d/%Y")) %>% 
+        mutate(value = as.numeric(as.character(V1))) %>%
+        group_by(date) %>%
+        summarize(value = round(mean(V1))) %>% 
+        tibble::column_to_rownames("date") %>% 
+        t() %>% as.data.frame() %>%
         mutate(Type = tab_name)
 }
 
