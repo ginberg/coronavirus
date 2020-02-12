@@ -26,11 +26,4 @@
 
 # -- VARIABLES --
 
-#summary_sheet <- "https://docs.google.com/spreadsheets/d/1wQVypefm946ch4XDp37uZ-wartW4V7ILdg-qYiDXUHM/htmlview?usp=sharing&sle=true"
-cases_sheet <- "https://docs.google.com/spreadsheets/d/1UF2pSkFTURko2OvfHWWlFpDFAr1UxCBA4JLwlSP6KFo/htmlview?usp=sharing&sle=true#"
-confirmed   <- "Confirmed"
-recovered   <- "Recovered"
-death       <- "Death"
-tabs        <- c(confirmed, recovered, death)
-
 # -- FUNCTIONS --

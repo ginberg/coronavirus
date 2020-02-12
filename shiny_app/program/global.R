@@ -19,8 +19,11 @@ library(glue)
 library(renv)
 
 g_live_data <- FALSE
-options(gargle_oauth_email = "g.inberg@gmail.com")
 g_refresh_period <- 6*60*60*1000
+g_confirmed <- "Confirmed"
+g_recovered <- "Recovered"
+g_death     <- "Death"
+g_tabs      <- c(g_confirmed, g_recovered, g_death)
 
 source(paste("program", "fxn", "supporting_data.R", sep = .Platform$file.sep))
 source(paste("program", "fxn", "supporting_plots.R", sep = .Platform$file.sep))

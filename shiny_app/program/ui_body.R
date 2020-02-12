@@ -33,8 +33,8 @@ body1 <- shinydashboard::box(id     = "bodyElement1",
                                                   "Download table data"))
 
 timePanel    <- tabPanel("Cases in Time",
-                         fluidRow(column(width = 6, canvasXpressOutput("chart_all_cases", height = "670px")),
-                                  column(width = 6, canvasXpressOutput("chart_new_cases", height = "670px"))))
+                         fluidRow(column(width = 6, canvasXpressOutput("chart_new_cases", height = "670px")),
+                                  column(width = 6, canvasXpressOutput("chart_all_cases", height = "670px"))))
 
 mapPanel     <- tabPanel("Cases per Region",
                          leafletOutput("map", height = "700px"))
