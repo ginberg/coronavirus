@@ -64,8 +64,20 @@ output$map <- renderLeaflet({
     get_map_chart()
 })
 
-output$chart <- renderCanvasXpress({
-    get_line_chart(g_line_data)
+output$chart_all_cases <- renderCanvasXpress({
+    get_line_chart(g_line_data, "Total Cases ")
+})
+
+output$chart_new_cases <- renderCanvasXpress({
+    new_data <- g_line_data %>% 
+        t() %>% as.data.frame() %>%
+        tibble::rownames_to_column("date") %>%
+        mutate(Confirmed = Confirmed - lag(Confirmed)) %>% 
+        mutate(Death = Death - lag(Death)) %>% 
+        mutate(Recovered = Recovered - lag(Recovered)) %>% 
+        tibble::column_to_rownames("date") %>%
+        t() %>% as.data.frame()
+    get_line_chart(new_data, "New Cases per day")
 })
 
 output$total_stats <- renderUI({

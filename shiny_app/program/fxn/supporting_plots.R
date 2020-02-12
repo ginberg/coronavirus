@@ -16,7 +16,7 @@ get_map_chart <- function() {
                        color = "#FF0000")
 }
 
-get_line_chart <- function(data) {
+get_line_chart <- function(data, title) {
     canvasXpress(
             data              = data,
             graphOrientation  = "vertical",
@@ -27,7 +27,7 @@ get_line_chart <- function(data) {
             smpTitleFontStyle = "italic",
             colors            = g_colors,
             xAxis2Show        = FALSE,
-            title             = "2019-nCoV over time",
+            title             = title,
             legendPosition    = "bottom",
             legendColumns     = 3,
             smpLabelScaleFontFactor = 0.3)
