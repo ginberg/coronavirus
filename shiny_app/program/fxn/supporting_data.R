@@ -49,7 +49,6 @@ if (g_live_data) {
         left_join(recovered_cases) %>%
         left_join(death_cases)
     
-    #browser()
     line_data <- rbind.fill(get_line_data(confirmed_data, g_confirmed),
                             get_line_data(death_data, g_death),
                             get_line_data(recovered_data, g_recovered)) %>% 
