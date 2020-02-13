@@ -1,6 +1,5 @@
 ## Supporting plots
 
-
 get_map_chart <- function() {
     leaflet(g_map_data) %>% 
             setView(lng = 112.27070, lat = 30.97564, zoom = 4.5) %>%

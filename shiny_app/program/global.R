@@ -18,7 +18,7 @@ library(canvasXpress)
 library(glue)
 library(renv)
 
-g_live_data <- FALSE
+g_live_data <- TRUE
 g_refresh_period <- 6*60*60*1000
 g_confirmed <- "Confirmed"
 g_recovered <- "Recovered"
