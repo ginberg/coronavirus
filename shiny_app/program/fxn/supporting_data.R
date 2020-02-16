@@ -2,12 +2,13 @@
 
 get_all_data <- function(tab_name) {
     result <- NULL
+    base_URL <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/"
     if (tab_name == g_confirmed) {
-        result <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/time_series/time_series_2019-ncov-Confirmed.csv") 
+        result <- read.csv(glue("{base_URL}time_series_19-covid-Confirmed.csv"))
     } else if (tab_name == g_recovered) {
-        result <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/time_series/time_series_2019-ncov-Recovered.csv") 
+        result <- read.csv(glue("{base_URL}time_series_19-covid-Recovered.csv"))
     } else if (tab_name == g_death) {
-        result <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/time_series/time_series_2019-ncov-Deaths.csv") 
+        result <- read.csv(glue("{base_URL}time_series_19-covid-Deaths.csv"))
     }
     colnames(result) <- gsub("X", "0", colnames(result))
     result
@@ -54,7 +55,7 @@ if (g_live_data) {
                             get_line_data(recovered_data, g_recovered)) %>% 
         tibble::column_to_rownames("Type")
     
-    saveRDS(map_data, "program/data/map_data.rds")
+    saveRDS(map_data,  "program/data/map_data.rds")
     saveRDS(line_data, "program/data/line_data.rds")
 }
 

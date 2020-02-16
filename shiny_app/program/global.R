@@ -10,13 +10,11 @@
 # ----------------------------------------
 
 # -- IMPORTS --
-library(googlesheets4)
 library(plyr)
 library(dplyr)
 library(leaflet)
 library(canvasXpress)
 library(glue)
-library(renv)
 
 g_live_data <- TRUE
 g_refresh_period <- 6*60*60*1000

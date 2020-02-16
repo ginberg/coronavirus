@@ -8,7 +8,7 @@ get_map_chart <- function() {
                        lat = ~Lat, 
                        weight = 1, 
                        radius = ~((sqrt(Confirmed) + 25) * 1000), 
-                       popup = paste0(ifelse(is.na(g_map_data$Province), paste0("<b>", g_map_data$Country, "</b>"), paste0("<b>", g_map_data$Province, "</b>:", g_map_data$Country)), "<br>",
+                       popup = paste0(ifelse(is.na(g_map_data$Province) | g_map_data$Province == "", paste0("<b>", g_map_data$Country, "</b>"), paste0("<b>", g_map_data$Province, "</b>:", g_map_data$Country)), "<br>",
                                       "Confirmed: <font color='orange'>", g_map_data$Confirmed, "</font><br>", 
                                       "Deaths:    <font color='red'>", g_map_data$Death,        "</font><br>",
                                       "Recovered: <font color='green'>", g_map_data$Recovered,  "</font><br>"),

@@ -86,7 +86,7 @@ output$total_stats <- renderUI({
 
 output$about_text <- renderUI({
     tags$div(style="text-align:center;",
-             "This app visualizes the spread of the Coronavirus 2019 using data from John Hopkins University.",
+             "This app visualizes the spread of the Coronavirus 2019 using data from John Hopkins University. The data is updated every 6 hours.",
              tags$p(), tags$a(href='https://github.com/ginberg/coronavirus', "Code on github"))
 })
 
