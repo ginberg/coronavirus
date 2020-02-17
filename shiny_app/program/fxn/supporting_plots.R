@@ -15,7 +15,11 @@ get_map_chart <- function() {
                        color = "#FF0000")
 }
 
-get_line_chart <- function(data, title) {
+get_line_chart <- function(data, title, show_decoration = FALSE) {
+    plot_decorations <- NULL
+    if (show_decoration) {
+        plot_decorations <- list(marker = list(list(sample = list("2020-02-13"), text = "The spike observed on Feb. 12 is the result, for the most part,\n of a change in diagnosis classification for which 13,332 clinically\n (rather than laboratory) confirmed cases were all reported as new cases", variable = "Confirmed", x = 0.5, y = 0.05)))
+    }
     canvasXpress(
             data              = data,
             graphOrientation  = "vertical",
@@ -29,5 +33,7 @@ get_line_chart <- function(data, title) {
             title             = title,
             legendPosition    = "bottom",
             legendColumns     = 3,
-            smpLabelScaleFontFactor = 0.3)
+            decorations       = plot_decorations,
+            decorationScaleFontFactor = 0.6,
+            smpLabelScaleFontFactor   = 0.3)
 }

@@ -77,7 +77,7 @@ output$chart_new_cases <- renderCanvasXpress({
         mutate(Recovered = Recovered - lag(Recovered)) %>% 
         tibble::column_to_rownames("date") %>%
         t() %>% as.data.frame()
-    get_line_chart(new_data, "New Cases per day")
+    get_line_chart(new_data, "New Cases per day", show_decoration = TRUE)
 })
 
 output$total_stats <- renderUI({
