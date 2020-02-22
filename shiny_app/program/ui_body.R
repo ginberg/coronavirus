@@ -28,6 +28,7 @@ body1 <- shinydashboard::box(id     = "bodyElement1",
                              status = "primary",
                              collapsible = TRUE,
                              collapsed   = TRUE,
+                             tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "css/custom.css")),
                              downloadableTableUI("coronaDT",
                                                   list("csv", "tsv"),
                                                   "Download table data"))
@@ -40,11 +41,11 @@ mapPanel     <- tabPanel("Cases per Region",
                          leafletOutput("map", height = "700px"))
 
 body2 <- shinydashboard::tabBox(id       = "outputTab",
-                title    = NULL,
-                width    = 12,
-                selected = "Cases in Time",
-                timePanel,
-                mapPanel)
+                                title    = NULL,
+                                width    = 12,
+                                selected = "Cases in Time",
+                                timePanel,
+                                mapPanel)
 
 # -- Register Elements in the ORDER SHOWN in the UI
 

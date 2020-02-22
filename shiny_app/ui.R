@@ -23,4 +23,5 @@ dashboardPagePlus(periscope:::fw_create_header_plus(sidebar_right_icon = "info-c
                   periscope:::fw_create_sidebar(resetbutton = FALSE),
                   periscope:::fw_create_body(),
                   periscope:::fw_create_right_sidebar(),
-                  sidebar_fullCollapse = TRUE)
+                  sidebar_fullCollapse = TRUE,
+                  skin = "red")

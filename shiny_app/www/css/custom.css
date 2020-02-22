@@ -1,0 +1,18 @@
+/* custom styling */
+
+.nav-tabs-custom>.nav-tabs>li:first-of-type.active>a {
+    border-top-color:red;
+}
+.nav-tabs-custom>.nav-tabs>li.active {
+    border-top-color:red;
+}
+.box.box-primary {
+    border-top-color:red;
+}
+
+/*body {
+    background-color:black;
+}
+.content-wrapper {
+    background-color:black;
+}*/
