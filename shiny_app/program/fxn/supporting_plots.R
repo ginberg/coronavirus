@@ -18,7 +18,10 @@ get_map_chart <- function() {
 get_line_chart <- function(data, title, show_decoration = FALSE) {
     plot_decorations <- NULL
     if (show_decoration) {
-        plot_decorations <- list(marker = list(list(sample = list("2020-02-13"), text = "The spike observed on Feb. 12 is the result, for the most part,\n of a change in diagnosis classification for which 13,332 clinically\n (rather than laboratory) confirmed cases were all reported as new cases", variable = "Confirmed", x = 0.5, y = 0.05)))
+        plot_decorations <- list(marker = list(list(sample = list("2020-02-13"), 
+                                                    text = "The spike observed on Feb. 12 is the result, for the most part,\n of a change in diagnosis classification for which 13,332 clinically\n (rather than laboratory) confirmed cases were all reported as new cases", variable = "Confirmed", 
+                                                    x = 0.3, 
+                                                    y = 0.05)))
     }
     canvasXpress(
             data              = data,
