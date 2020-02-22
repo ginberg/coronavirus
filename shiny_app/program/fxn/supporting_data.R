@@ -16,7 +16,8 @@ get_all_data <- function(tab_name) {
 
 get_map_data <- function(data, tab_name) {
     data <- data %>% 
-        select(c(1,2,3,4, tail(names(.), 1)))
+        select(c(1,2,3,4, tail(names(.), 1))) %>%
+        mutate_if(is.factor, as.character) 
     colnames(data) <- c("Province", "Country", "Lat", "Lon", tab_name)
     data
 }

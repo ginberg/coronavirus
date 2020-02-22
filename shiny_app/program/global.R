@@ -28,7 +28,7 @@ source(paste("program", "fxn", "supporting_plots.R", sep = .Platform$file.sep))
 source(paste("program", "fxn", "supporting_misc.R", sep = .Platform$file.sep))
 
 # -- Setup your Application --
-set_app_parameters(title = "2019-nCoV Global Cases",
+set_app_parameters(title = "Covid-19 Global Cases",
                    loglevel = "DEBUG",
                    showlog = FALSE,
                    app_version = "1.0.0")

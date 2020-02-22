@@ -42,8 +42,12 @@ get_table_data <- reactive({
 # ----------------------------------------
 
 observe({
+    countries <- g_map_data %>% 
+        arrange(-Confirmed) %>% 
+        mutate(Country = ifelse(Country == "Others", glue("{Country} ({Province})"), Country)) %>%
+        pull(Country) %>% unique()
     updateSelectizeInput(session, "countrySel",
-                         choices = unique(g_map_data$Country))
+                         choices = countries)
 })
 
 observeEvent( autoInvalidate(), {
@@ -101,7 +105,7 @@ output$last_update <- renderUI({
 })
 
 output$country_stats <- renderUI({
-    country <- input$countrySel
+    country <- trimws(gsub("\\(.*", "", input$countrySel))
     data <- g_map_data %>% filter(Country == country)
     get_stats_block(data)
 })
