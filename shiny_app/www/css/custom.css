@@ -1,18 +1,39 @@
 /* custom styling */
 
-.nav-tabs-custom>.nav-tabs>li:first-of-type.active>a {
+.box.box-primary {
     border-top-color:red;
+}
+body {
+    background-color:#333;
+    color:#333 !important;
+}
+.content-wrapper {
+    background-color:#333;
+}
+.wrapper {
+    background-color:#333 !important;
+}
+
+.nav-tabs-custom {
+    background-color:#333;
+}
+.nav-tabs-custom>.tab-content {
+    background-color:#333;
+}
+.nav-tabs-custom>.nav-tabs>li>a {
+	color:#fff;
 }
 .nav-tabs-custom>.nav-tabs>li.active {
     border-top-color:red;
 }
-.box.box-primary {
+.nav-tabs-custom>.nav-tabs>li.active>a {
+    background-color:#333;
+    color:#fff;
+}
+.nav-tabs-custom>.nav-tabs>li.active:hover>a {
+    background-color:#333;
+    color:#fff;
+}
+.nav-tabs-custom>.nav-tabs>li:first-of-type.active>a {
     border-top-color:red;
 }
-
-/*body {
-    background-color:black;
-}
-.content-wrapper {
-    background-color:black;
-}*/

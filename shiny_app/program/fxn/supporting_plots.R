@@ -19,7 +19,7 @@ get_line_chart <- function(data, title, show_decoration = FALSE) {
     plot_decorations <- NULL
     if (show_decoration) {
         plot_decorations <- list(marker = list(list(sample = list("2020-02-13"), 
-                                                    text = "The spike observed on Feb. 12 is the result, for the most part,\n of a change in diagnosis classification for which 13,332 clinically\n (rather than laboratory) confirmed cases were all reported as new cases", variable = "Confirmed", 
+                                                    text = "The spike observed on Feb. 12 is the result\n of a change in diagnosis classification for which\n 13,332 clinically (rather than laboratory) confirmed cases\n were all reported as new cases", variable = "Confirmed", 
                                                     x = 0.3, 
                                                     y = 0.05)))
     }
@@ -37,6 +37,12 @@ get_line_chart <- function(data, title, show_decoration = FALSE) {
             legendPosition    = "bottom",
             legendColumns     = 3,
             decorations       = plot_decorations,
+            background        = "#333",
+            axisTickColor     = "#fff",
+            titleColor        = "#fff",
+            legendColor       = "#fff",
+            decorationsColor  = "#fff",
+            smpLabelFontColor = "#fff",
             decorationScaleFontFactor = 0.6,
             smpLabelScaleFontFactor   = 0.3)
 }
