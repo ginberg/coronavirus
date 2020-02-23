@@ -34,8 +34,11 @@ set_app_parameters(title = "Covid-19 Global Cases",
                    app_version = "1.0.0")
 # -- PROGRAM --
 
-g_map_data  <- get_map_data()
-g_line_data <- get_line_data()
+g_map_data      <- get_map_data()
+line_data       <- get_line_data()
+g_line_data     <- line_data[[1]]
+g_all_line_data <- line_data[[2]]
+rm(line_data)
 
 g_colors    <- c("orange", "red", "green")
 shinyOptions(plot.autocolors = TRUE)

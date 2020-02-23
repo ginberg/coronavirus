@@ -47,7 +47,9 @@ observe({
         mutate(Country = ifelse(Country == "Others", glue("{Country} ({Province})"), Country)) %>%
         pull(Country) %>% unique()
     updateSelectizeInput(session, "countrySel",
-                         choices = countries)
+                         choices = countries,
+                         selected = character(0),
+                         options  = list(placeholder = "Type/Click then Select"))
 })
 
 observeEvent( autoInvalidate(), {
@@ -69,11 +71,27 @@ output$map <- renderLeaflet({
 })
 
 output$chart_all_cases <- renderCanvasXpress({
-    get_line_chart(g_line_data, "Total Cases ")
+    data  <- g_line_data
+    title <- "Total Cases"
+    country <- NULL
+    if (!is.null(input$countrySel) && input$countrySel != "") {
+        country <- trimws(gsub("\\(.*", "", input$countrySel))
+        data <- filter_summarize_line_data(g_all_line_data, country)
+        title <- glue("Total Cases - {ifelse(startsWith(input$countrySel, 'Others'), input$countrySel, country)}")
+    }
+    get_line_chart(data, title)
 })
 
 output$chart_new_cases <- renderCanvasXpress({
-    new_data <- g_line_data %>% 
+    data  <- g_line_data
+    title <- "New Cases per day"
+    country <- NULL
+    if (!is.null(input$countrySel) && input$countrySel != "") {
+        country <- trimws(gsub("\\(.*", "", input$countrySel))
+        data <- filter_summarize_line_data(g_all_line_data, country)
+        title <- glue("New Cases per day - {ifelse(startsWith(input$countrySel, 'Others'), input$countrySel, country)}")
+    }
+    new_data <- data %>% 
         t() %>% as.data.frame() %>%
         tibble::rownames_to_column("date") %>%
         mutate(Confirmed = Confirmed - lag(Confirmed)) %>% 
@@ -81,7 +99,7 @@ output$chart_new_cases <- renderCanvasXpress({
         mutate(Recovered = Recovered - lag(Recovered)) %>% 
         tibble::column_to_rownames("date") %>%
         t() %>% as.data.frame()
-    get_line_chart(new_data, "New Cases per day", show_decoration = TRUE)
+    get_line_chart(new_data, title, show_decoration = is.null(country))
 })
 
 output$total_stats <- renderUI({
@@ -105,8 +123,11 @@ output$last_update <- renderUI({
 })
 
 output$country_stats <- renderUI({
-    country <- trimws(gsub("\\(.*", "", input$countrySel))
-    data <- g_map_data %>% filter(Country == country)
+    data <- g_map_data
+    if (!is.null(input$countrySel) && input$countrySel != "") {
+        country <- trimws(gsub("\\(.*", "", input$countrySel))
+        data <- g_map_data %>% filter(Country == country)
+    }
     get_stats_block(data)
 })
     

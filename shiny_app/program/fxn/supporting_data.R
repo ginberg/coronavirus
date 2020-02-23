@@ -22,7 +22,28 @@ get_map_data <- function(data, tab_name) {
     data
 }
 
-get_line_data <- function(data, tab_name) {
+get_all_line_data <- function(data, tab_name) {
+    result <- data %>% 
+        select(-c(3,4)) %>%
+        mutate(Type = tab_name)
+    colnames(result)[1:2] <- c("Province", "Country")
+    result
+}
+
+filter_summarize_line_data <- function(data, country) {
+    data %>% 
+        filter(Country == country) %>% 
+        group_by(Type) %>% 
+        summarise_if(is.numeric, sum, na.rm = TRUE) %>% 
+        tibble::column_to_rownames("Type") %>% 
+        t() %>% as.data.frame() %>% 
+        tibble::rownames_to_column("date") %>% 
+        mutate(date = as.Date(date, "%m.%d.%y")) %>% 
+        tibble::column_to_rownames("date") %>% 
+        t() %>% as.data.frame()
+}
+
+get_summarized_line_data <- function(data, tab_name) {
     data %>% 
         select(-c(3,4)) %>% 
         summarise_if(is.numeric, sum, na.rm = TRUE) %>%
@@ -51,13 +72,17 @@ if (g_live_data) {
         left_join(recovered_cases) %>%
         left_join(death_cases)
     
-    line_data <- rbind.fill(get_line_data(confirmed_data, g_confirmed),
-                            get_line_data(death_data, g_death),
-                            get_line_data(recovered_data, g_recovered)) %>% 
+    line_data <- rbind.fill(get_summarized_line_data(confirmed_data, g_confirmed),
+                            get_summarized_line_data(death_data, g_death),
+                            get_summarized_line_data(recovered_data, g_recovered)) %>% 
         tibble::column_to_rownames("Type")
     
+    all_line_data <- rbind.fill(get_all_line_data(confirmed_data, g_confirmed),
+                                get_all_line_data(death_data, g_death),
+                                get_all_line_data(recovered_data, g_recovered)) 
+    
     saveRDS(map_data,  "program/data/map_data.rds")
-    saveRDS(line_data, "program/data/line_data.rds")
+    saveRDS(list(line_data, all_line_data), "program/data/line_data.rds")
 }
 
 get_map_data <- function() {
