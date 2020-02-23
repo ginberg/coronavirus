@@ -23,6 +23,8 @@ get_line_chart <- function(data, title, show_decoration = FALSE) {
                                                     x = 0.3, 
                                                     y = 0.05)))
     }
+    bg_color   <- "#222d32"
+    font_color <- "#fff"
     canvasXpress(
             data              = data,
             graphOrientation  = "vertical",
@@ -37,12 +39,12 @@ get_line_chart <- function(data, title, show_decoration = FALSE) {
             legendPosition    = "bottom",
             legendColumns     = 3,
             decorations       = plot_decorations,
-            background        = "#333",
-            axisTickColor     = "#fff",
-            titleColor        = "#fff",
-            legendColor       = "#fff",
-            decorationsColor  = "#fff",
-            smpLabelFontColor = "#fff",
+            background        = bg_color,
+            axisTickColor     = font_color,
+            titleColor        = font_color,
+            legendColor       = font_color,
+            decorationsColor  = font_color,
+            smpLabelFontColor = font_color,
             decorationScaleFontFactor = 0.6,
             smpLabelScaleFontFactor   = 0.3)
 }
