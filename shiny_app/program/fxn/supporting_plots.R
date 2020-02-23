@@ -3,7 +3,8 @@
 get_map_chart <- function() {
     leaflet(g_map_data) %>% 
             setView(lng = 112.27070, lat = 30.97564, zoom = 4.5) %>%
-            addProviderTiles(providers$OpenStreetMap) %>%
+            addProviderTiles('Esri.WorldImagery') %>%
+            addProviderTiles("CartoDB.PositronOnlyLabels") %>%
             addCircles(lng = ~Lon, 
                        lat = ~Lat, 
                        weight = 1, 

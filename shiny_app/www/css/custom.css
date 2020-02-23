@@ -13,6 +13,14 @@ body {
 .wrapper {
     background-color:#222d32 !important;
 }
+.box-header {
+    background-color:#222d32;
+    color:#fff;
+}
+.box-body {
+    background-color:#222d32;
+    color:#fff;
+}
 
 .nav-tabs-custom {
     background-color:#222d32;
@@ -52,4 +60,15 @@ body {
 }
 .nav-tabs-custom>.nav-tabs>li:first-of-type.active>a {
     border-top-color:red;
+}
+.table-striped>tbody>tr:nth-of-type(odd) {
+	background-color:#222d32;
+}
+
+/*canvasXpress */
+.CanvasXpressToolbar {
+    background-color:#222d32 !important;
+}
+.btn-box-tool {
+	color:#fff !important;
 }
