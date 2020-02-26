@@ -51,7 +51,7 @@ get_line_chart <- function(data, title, show_decoration = FALSE) {
             legendColor       = font_color,
             decorationsColor  = font_color,
             smpLabelFontColor = font_color,
-            setMaxX           = max(data),
+            xAxisTicks        = 10,
             decorationScaleFontFactor = 0.6,
             smpLabelScaleFontFactor   = 0.3)
 }
