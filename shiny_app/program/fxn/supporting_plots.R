@@ -1,19 +1,24 @@
 ## Supporting plots
 
 get_map_chart <- function() {
+    popup_content <- paste(sep = "<br/>",
+                           "The virus likely started from",
+                           "a <b><a target = '_blank' href='https://www.businessinsider.nl/wuhan-coronavirus-chinese-wet-market-photos-2020-1?international=true&r=US Center'>Seafood market</a></b> in Wuhan.")
     leaflet(g_map_data) %>% 
             setView(lng = 112.27070, lat = 30.97564, zoom = 4.5) %>%
             addProviderTiles('Esri.WorldImagery') %>%
             addProviderTiles("CartoDB.PositronOnlyLabels") %>%
-            addCircles(lng = ~Lon, 
-                       lat = ~Lat, 
-                       weight = 1, 
-                       radius = ~((sqrt(Confirmed) + 25) * 1000), 
+            addCircles(lng = ~Lon,
+                       lat = ~Lat,
+                       weight = 1,
+                       radius = ~((sqrt(Confirmed) + 25) * 1000),
                        popup = paste0(ifelse(is.na(g_map_data$Province) | g_map_data$Province == "", paste0("<b>", g_map_data$Country, "</b>"), paste0("<b>", g_map_data$Province, "</b>:", g_map_data$Country)), "<br>",
-                                      "Confirmed: <font color='orange'>", g_map_data$Confirmed, "</font><br>", 
+                                      "Confirmed: <font color='orange'>", g_map_data$Confirmed, "</font><br>",
                                       "Deaths:    <font color='red'>", g_map_data$Death,        "</font><br>",
                                       "Recovered: <font color='green'>", g_map_data$Recovered,  "</font><br>"),
-                       color = "#FF0000")
+                       color = "#FF0000",
+                       fillOpacity = 1) %>%
+            addPopups(112.27070, 30.97564, popup_content, options = popupOptions(closeButton = FALSE))
 }
 
 get_line_chart <- function(data, title, show_decoration = FALSE) {
@@ -46,6 +51,7 @@ get_line_chart <- function(data, title, show_decoration = FALSE) {
             legendColor       = font_color,
             decorationsColor  = font_color,
             smpLabelFontColor = font_color,
+            setMaxX           = max(data),
             decorationScaleFontFactor = 0.6,
             smpLabelScaleFontFactor   = 0.3)
 }
