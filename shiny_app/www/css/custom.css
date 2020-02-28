@@ -49,15 +49,15 @@ body {
 }
 .nav-tabs>li.active>a {
     background-color: var(--main-bg-color) !important;
-    color: var(--main-font-color); !important;
+    color: var(--main-font-color) !important;
 }
 .nav-tabs>li.active>a:hover {
     background-color: var(--main-bg-color);
-    color: var(--main-font-color);
+    color: var(--main-font-color) !important;
 }
 .nav-tab>li.active>a:focus {
     background-color: var(--main-bg-color) !important;
-    color: var(--main-font-color); !important;
+    color: var(--main-font-color) !important;
 }
 .nav>li>a:hover {
     background-color: var(--main-bg-color);
@@ -76,4 +76,7 @@ body {
 }
 .btn-box-tool {
 	color: var(--main-font-color) !important;
+}
+.skin-red .sidebar a {
+	color: var(--main-font-color);
 }
