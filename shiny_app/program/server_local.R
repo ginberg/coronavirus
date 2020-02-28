@@ -47,7 +47,7 @@ observe({
         mutate(Country = ifelse(Country == "Others", glue("{Country} ({Province})"), Country)) %>%
         pull(Country) %>% unique()
     updateSelectizeInput(session, "countrySel",
-                         choices = countries,
+                         choices = c(g_all_option, countries),
                          selected = character(0),
                          options  = list(placeholder = "Type/Click then Select"))
 })
@@ -57,6 +57,19 @@ observeEvent( autoInvalidate(), {
     loginfo("restarting app")
     session$reload()
 }, ignoreInit = T)
+
+observeEvent(input$countrySel, {
+    country <-  trimws(gsub("\\(.*", "", input$countrySel))
+    
+    if (!is.null(country) && country != "" && country != g_all_option) {
+        map_center <- g_map_data %>% 
+            filter(Country == country) %>% 
+            slice(1:1) %>% 
+            select(Lat, Lon)
+        leafletProxy("map") %>%
+          setView(lng = map_center$Lon, lat = map_center$Lat, zoom = 4.5)
+    }
+})
 
 # -- Setup Download Modules with Functions we want called
 callModule(downloadableTable, "coronaDT",  ss_userAction.Log,
@@ -74,7 +87,7 @@ output$chart_all_cases <- renderCanvasXpress({
     data  <- g_line_data
     title <- "Total Cases"
     country <- NULL
-    if (!is.null(input$countrySel) && input$countrySel != "") {
+    if (!is.null(input$countrySel) && input$countrySel != "" && input$countrySel != g_all_option) {
         country <- trimws(gsub("\\(.*", "", input$countrySel))
         data <- filter_summarize_line_data(g_all_line_data, country)
         title <- glue("Total Cases - {ifelse(startsWith(input$countrySel, 'Others'), input$countrySel, country)}")
@@ -86,7 +99,7 @@ output$chart_new_cases <- renderCanvasXpress({
     data  <- g_line_data
     title <- "New Cases per day"
     country <- NULL
-    if (!is.null(input$countrySel) && input$countrySel != "") {
+    if (!is.null(input$countrySel) && input$countrySel != "" && input$countrySel != g_all_option) {
         country <- trimws(gsub("\\(.*", "", input$countrySel))
         data <- filter_summarize_line_data(g_all_line_data, country)
         title <- glue("New Cases per day - {ifelse(startsWith(input$countrySel, 'Others'), input$countrySel, country)}")
@@ -124,7 +137,7 @@ output$last_update <- renderUI({
 
 output$country_stats <- renderUI({
     data <- g_map_data
-    if (!is.null(input$countrySel) && input$countrySel != "") {
+    if (!is.null(input$countrySel) && input$countrySel != "" && input$countrySel != g_all_option) {
         country <- trimws(gsub("\\(.*", "", input$countrySel))
         data <- g_map_data %>% filter(Country == country)
     }

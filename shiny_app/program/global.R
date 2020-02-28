@@ -18,10 +18,11 @@ library(glue)
 
 g_live_data <- TRUE
 g_refresh_period <- 6*60*60*1000
-g_confirmed <- "Confirmed"
-g_recovered <- "Recovered"
-g_death     <- "Death"
-g_tabs      <- c(g_confirmed, g_recovered, g_death)
+g_all_option <- "All"
+g_confirmed  <- "Confirmed"
+g_recovered  <- "Recovered"
+g_death      <- "Death"
+g_tabs       <- c(g_confirmed, g_recovered, g_death)
 
 source(paste("program", "fxn", "supporting_data.R", sep = .Platform$file.sep))
 source(paste("program", "fxn", "supporting_plots.R", sep = .Platform$file.sep))
