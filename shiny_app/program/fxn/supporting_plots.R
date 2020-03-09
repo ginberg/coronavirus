@@ -64,3 +64,37 @@ get_line_chart <- function(data, title, show_decoration = FALSE, adjust_scale = 
             decorationScaleFontFactor = 0.6,
             smpLabelScaleFontFactor   = 0.3)
 }
+
+get_country_comparison_chart <- function(data, title, adjust_scale = FALSE) {
+    bg_color   <- "#222d32"
+    font_color <- "#fff"
+    x_axis_title <- "Count"
+    if (adjust_scale) {
+        x_axis_title <- "Count (x1000)"
+        data <- data / 1000    
+    }
+    canvasXpress(
+            data              = data,
+            graphOrientation  = "vertical",
+            graphType         = "Line",
+            lineType          = "spline",
+            smpLabelRotate    = 45,
+            smpTitle          = NULL,
+            smpTitleFontStyle = "italic",
+            #colors            = g_colors,
+            xAxis2Show        = FALSE,
+            title             = title,
+            legendPosition    = "right",
+            #legendColumns     = 3,
+            background        = bg_color,
+            axisTitleColor    = font_color,
+            axisTickColor     = font_color,
+            titleColor        = font_color,
+            legendColor       = font_color,
+            decorationsColor  = font_color,
+            smpLabelFontColor = font_color,
+            xAxisTicks        = 10,
+            xAxisTitle        = x_axis_title,
+            decorationScaleFontFactor = 0.6,
+            smpLabelScaleFontFactor   = 0.3)
+}

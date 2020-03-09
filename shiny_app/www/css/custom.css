@@ -80,3 +80,9 @@ body {
 .skin-red .sidebar a {
 	color: var(--main-font-color);
 }
+.periscope-input-label-with-tt {
+    color: var(--main-font-color);
+}
+.control-label {
+    color: var(--main-font-color);
+}

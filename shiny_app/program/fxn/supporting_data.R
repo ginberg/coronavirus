@@ -30,12 +30,29 @@ get_all_line_data <- function(data, tab_name) {
     result
 }
 
-filter_summarize_line_data <- function(data, country) {
+get_country_data <- function(data, country) {
     data %>% 
         filter(Country == country) %>% 
         group_by(Type) %>% 
         summarise_if(is.numeric, sum, na.rm = TRUE) %>% 
         tibble::column_to_rownames("Type") %>% 
+        t() %>% as.data.frame() %>% 
+        tibble::rownames_to_column("date") %>% 
+        mutate(date = as.Date(date, "%m.%d.%y")) %>% 
+        tibble::column_to_rownames("date") %>% 
+        t() %>% as.data.frame()
+}
+
+get_type_data <- function(data, type, max_countries) {
+    data %>% 
+        filter(Type == type) %>% 
+        group_by(Country) %>% 
+        summarise_if(is.numeric, sum, na.rm = TRUE) %>% 
+        mutate(Total = rowSums(.[-1])) %>% 
+        arrange(desc(Total)) %>% 
+        select(-Total) %>%
+        slice(1:max_countries) %>%
+        tibble::column_to_rownames("Country") %>% 
         t() %>% as.data.frame() %>% 
         tibble::rownames_to_column("date") %>% 
         mutate(date = as.Date(date, "%m.%d.%y")) %>% 

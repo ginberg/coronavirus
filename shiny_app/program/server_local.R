@@ -107,7 +107,7 @@ output$chart_new_cases <- renderCanvasXpress({
     adjust_scale    <- TRUE
     if (!is.null(input$countrySel) && input$countrySel != "" && input$countrySel != g_all_option) {
         country <- trimws(gsub("\\(.*", "", input$countrySel))
-        data <- filter_summarize_line_data(g_all_line_data, country)
+        data <- get_country_data(g_all_line_data, country)
         title <- glue("New Cases per day - {ifelse(startsWith(input$countrySel, 'Others'), input$countrySel, country)}")
         if (country != g_mainland_china) {
             show_decoration <- FALSE
@@ -123,6 +123,26 @@ output$chart_new_cases <- renderCanvasXpress({
         tibble::column_to_rownames("date") %>%
         t() %>% as.data.frame()
     get_line_chart(new_data, title, show_decoration = show_decoration, adjust_scale = adjust_scale)
+})
+
+output$chart_country_compare <- renderCanvasXpress({
+    data  <- g_line_data
+    case_type <- input$caseType
+    if (!is.null(case_type) && case_type != "" && case_type %in% g_tabs) { 
+        title <- glue("Daily {case_type} Cases - Last 10 days")
+        max_countries <- input$maxCountries
+        max_history_days <- 10
+        
+        data <- get_type_data(g_all_line_data, case_type, max_countries)
+        new_data <- data %>% 
+            t() %>% as.data.frame() %>%
+            tibble::rownames_to_column("date") %>%
+            mutate_at(vars(-date), funs(. - lag(.))) %>%
+            tibble::column_to_rownames("date") %>%
+            tail(max_history_days) %>%
+            t() %>% as.data.frame()
+        get_country_comparison_chart(new_data, title, adjust_scale = FALSE)
+    }
 })
 
 output$total_stats <- renderUI({

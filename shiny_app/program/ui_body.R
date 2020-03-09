@@ -40,12 +40,24 @@ timePanel    <- tabPanel("Cases over Time",
 mapPanel     <- tabPanel("Cases per Region",
                          leafletOutput("map", height = "700px"))
 
+ccPanel      <- tabPanel("Country comparison",
+                         fluidRow(column(width = 2, 
+                                         selectizeInput("caseType",
+                                                        label    = ui_tooltip('caseTypeTooltip', "Case Type", "Select a type"),
+                                                        choices  = g_tabs,
+                                                        multiple = FALSE,
+                                                        width    = "100%")),
+                                  column(width = 1),
+                                  column(width = 3, sliderInput("maxCountries", "Top Countries", value = 5, min = 1, max = 20))),
+                         fluidRow(column(width = 12, canvasXpressOutput("chart_country_compare", height = "670px"))))
+
 body2 <- shinydashboard::tabBox(id       = "outputTab",
                                 title    = NULL,
                                 width    = 12,
                                 selected = "Cases over Time",
                                 timePanel,
-                                mapPanel)
+                                mapPanel,
+                                ccPanel)
 
 # -- Register Elements in the ORDER SHOWN in the UI
 
