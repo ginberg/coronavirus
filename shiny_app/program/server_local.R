@@ -87,22 +87,32 @@ output$chart_all_cases <- renderCanvasXpress({
     data  <- g_line_data
     title <- "Total Cases"
     country <- NULL
+    adjust_scale <- TRUE
     if (!is.null(input$countrySel) && input$countrySel != "" && input$countrySel != g_all_option) {
         country <- trimws(gsub("\\(.*", "", input$countrySel))
         data <- filter_summarize_line_data(g_all_line_data, country)
         title <- glue("Total Cases - {ifelse(startsWith(input$countrySel, 'Others'), input$countrySel, country)}")
+        if (country != g_mainland_china) {
+            adjust_scale <- FALSE
+        }
     }
-    get_line_chart(data, title)
+    get_line_chart(data, title, adjust_scale = adjust_scale)
 })
 
 output$chart_new_cases <- renderCanvasXpress({
     data  <- g_line_data
     title <- "New Cases per day"
     country <- NULL
+    show_decoration <- TRUE
+    adjust_scale    <- TRUE
     if (!is.null(input$countrySel) && input$countrySel != "" && input$countrySel != g_all_option) {
         country <- trimws(gsub("\\(.*", "", input$countrySel))
         data <- filter_summarize_line_data(g_all_line_data, country)
         title <- glue("New Cases per day - {ifelse(startsWith(input$countrySel, 'Others'), input$countrySel, country)}")
+        if (country != g_mainland_china) {
+            show_decoration <- FALSE
+            adjust_scale    <- FALSE
+        }
     }
     new_data <- data %>% 
         t() %>% as.data.frame() %>%
@@ -112,7 +122,7 @@ output$chart_new_cases <- renderCanvasXpress({
         mutate(Recovered = Recovered - lag(Recovered)) %>% 
         tibble::column_to_rownames("date") %>%
         t() %>% as.data.frame()
-    get_line_chart(new_data, title, show_decoration = is.null(country))
+    get_line_chart(new_data, title, show_decoration = show_decoration, adjust_scale = adjust_scale)
 })
 
 output$total_stats <- renderUI({

@@ -4,6 +4,8 @@ get_map_chart <- function() {
     popup_content <- paste(sep = "<br/>",
                            "The virus likely started from",
                            "a <b><a target = '_blank' href='https://www.businessinsider.nl/wuhan-coronavirus-chinese-wet-market-photos-2020-1?international=true&r=US Center'>Seafood market</a></b> in Wuhan.")
+    #china: lng = 112.27070, lat = 30.97564
+    #italy: lon = 12.0000  , lat = 43.00000
     leaflet(g_map_data) %>% 
             setView(lng = 112.27070, lat = 30.97564, zoom = 4.5) %>%
             addProviderTiles('Esri.WorldImagery') %>%
@@ -21,16 +23,21 @@ get_map_chart <- function() {
             addPopups(112.27070, 30.97564, popup_content, options = popupOptions(closeButton = FALSE))
 }
 
-get_line_chart <- function(data, title, show_decoration = FALSE) {
+get_line_chart <- function(data, title, show_decoration = FALSE, adjust_scale = FALSE) {
     plot_decorations <- NULL
     if (show_decoration) {
         plot_decorations <- list(marker = list(list(sample = list("2020-02-13"), 
-                                                    text = "The spike observed on Feb. 12 is the result\n of a change in diagnosis classification for which\n 13,332 clinically (rather than laboratory) confirmed cases\n were all reported as new cases", variable = "Confirmed", 
-                                                    x = 0.3, 
-                                                    y = 0.05)))
+                                                    text = "The spike observed on Feb. 12\n is the result of a change in\n diagnosis classification for which 13,332\n clinically (rather than laboratory) confirmed\n cases were all reported as new cases", variable = "Confirmed", 
+                                                    x = 0.17, 
+                                                    y = 0.06)))
     }
     bg_color   <- "#222d32"
     font_color <- "#fff"
+    x_axis_title <- "Count"
+    if (adjust_scale) {
+        x_axis_title <- "Count (x1000)"
+        data <- data / 1000    
+    }
     canvasXpress(
             data              = data,
             graphOrientation  = "vertical",
@@ -46,12 +53,14 @@ get_line_chart <- function(data, title, show_decoration = FALSE) {
             legendColumns     = 3,
             decorations       = plot_decorations,
             background        = bg_color,
+            axisTitleColor    = font_color,
             axisTickColor     = font_color,
             titleColor        = font_color,
             legendColor       = font_color,
             decorationsColor  = font_color,
             smpLabelFontColor = font_color,
             xAxisTicks        = 10,
+            xAxisTitle        = x_axis_title,
             decorationScaleFontFactor = 0.6,
             smpLabelScaleFontFactor   = 0.3)
 }
