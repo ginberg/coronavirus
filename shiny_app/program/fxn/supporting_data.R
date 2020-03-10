@@ -43,21 +43,27 @@ get_country_data <- function(data, country) {
         t() %>% as.data.frame()
 }
 
-get_type_data <- function(data, type, max_countries) {
+get_type_data <- function(data, type, max_history, max_countries) {
     data %>% 
-        filter(Type == type) %>% 
+        filter(Type == type) %>%
+        select(-c("Province", "Type")) %>%
+        select(c(1, seq(ncol(.) - (max_history + 1), ncol(.)))) %>%
         group_by(Country) %>% 
         summarise_if(is.numeric, sum, na.rm = TRUE) %>% 
-        mutate(Total = rowSums(.[-1])) %>% 
-        arrange(desc(Total)) %>% 
-        select(-Total) %>%
-        slice(1:max_countries) %>%
         tibble::column_to_rownames("Country") %>% 
         t() %>% as.data.frame() %>% 
         tibble::rownames_to_column("date") %>% 
         mutate(date = as.Date(date, "%m.%d.%y")) %>% 
+        mutate_at(vars(-date), funs(. - lag(.))) %>% 
+        slice(2:nrow(.)) %>%
         tibble::column_to_rownames("date") %>% 
-        t() %>% as.data.frame()
+        t() %>% as.data.frame() %>% 
+        tibble::rownames_to_column("Country") %>%
+        mutate(Total = rowSums(.[-1], na.rm = T)) %>% 
+        arrange(desc(Total)) %>% 
+        select(-Total) %>%
+        slice(1:max_countries) %>%
+        tibble::column_to_rownames("Country")
 }
 
 get_summarized_line_data <- function(data, tab_name) {

@@ -48,7 +48,8 @@ ccPanel      <- tabPanel("Country comparison",
                                                         multiple = FALSE,
                                                         width    = "100%")),
                                   column(width = 1),
-                                  column(width = 3, sliderInput("maxCountries", "Top Countries", value = 5, min = 1, max = 20))),
+                                  column(width = 3, sliderInput("maxHistory",   "History (days)", value = 10, min = 1, max = 60)),
+                                  column(width = 3, sliderInput("maxCountries", "Top Countries", value = 8, min = 1, max = 20))),
                          fluidRow(column(width = 12, canvasXpressOutput("chart_country_compare", height = "670px"))))
 
 body2 <- shinydashboard::tabBox(id       = "outputTab",
