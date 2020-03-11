@@ -16,7 +16,7 @@ library(leaflet)
 library(canvasXpress)
 library(glue)
 
-g_live_data <- TRUE
+g_live_data      <- FALSE
 g_refresh_period <- 6*60*60*1000
 g_all_option     <- "All"
 g_confirmed      <- "Confirmed"
@@ -36,10 +36,11 @@ set_app_parameters(title = "Covid-19 Global Cases",
                    app_version = "1.0.0")
 # -- PROGRAM --
 
-g_map_data      <- get_map_data()
-line_data       <- get_line_data()
-g_line_data     <- line_data[[1]]
-g_all_line_data <- line_data[[2]]
+g_map_data       <- get_map_data()
+line_data        <- get_line_data()
+g_line_data      <- line_data[[1]]
+g_all_line_data  <- line_data[[2]]
+g_dutch_map_data <- get_rivm_data()
 rm(line_data)
 
 g_colors    <- c("orange", "red", "green")

@@ -37,7 +37,7 @@ timePanel    <- tabPanel("Cases over Time",
                          fluidRow(column(width = 6, canvasXpressOutput("chart_new_cases", height = "670px")),
                                   column(width = 6, canvasXpressOutput("chart_all_cases", height = "670px"))))
 
-mapPanel     <- tabPanel("Cases per Region",
+mapPanel     <- tabPanel("World Map",
                          leafletOutput("map", height = "700px"))
 
 ccPanel      <- tabPanel("Country comparison",
@@ -48,9 +48,12 @@ ccPanel      <- tabPanel("Country comparison",
                                                         multiple = FALSE,
                                                         width    = "100%")),
                                   column(width = 1),
-                                  column(width = 3, sliderInput("maxHistory",   "History (days)", value = 10, min = 1, max = 60)),
+                                  column(width = 3, sliderInput("maxHistory",   "History (days)", value = 10, min = 1, max = 45)),
                                   column(width = 3, sliderInput("maxCountries", "Top Countries", value = 8, min = 1, max = 20))),
                          fluidRow(column(width = 12, canvasXpressOutput("chart_country_compare", height = "670px"))))
+
+dutchMapPanel     <- tabPanel("Netherlands (RIVM data)",
+                         leafletOutput("dutchMap", height = "700px"))
 
 body2 <- shinydashboard::tabBox(id       = "outputTab",
                                 title    = NULL,
@@ -58,7 +61,8 @@ body2 <- shinydashboard::tabBox(id       = "outputTab",
                                 selected = "Cases over Time",
                                 timePanel,
                                 mapPanel,
-                                ccPanel)
+                                ccPanel,
+                                dutchMapPanel)
 
 # -- Register Elements in the ORDER SHOWN in the UI
 

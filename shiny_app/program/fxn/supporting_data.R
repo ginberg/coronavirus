@@ -106,6 +106,21 @@ if (g_live_data) {
     
     saveRDS(map_data,  "program/data/map_data.rds")
     saveRDS(list(line_data, all_line_data), "program/data/line_data.rds")
+    
+    # rivm (dutch) data
+    current_rivm_data <- read.csv("program/data/rivm.csv", stringsAsFactors = FALSE)
+    new_rivm_data     <- NULL
+    tryCatch({
+        rivm_filename <- glue("https://www.volksgezondheidenzorg.info/sites/default/files/map/detail_data/klik_corona{format(Sys.Date(), '%d%m%Y')}_2.csv")
+        new_rivm_data <<- suppressWarnings(read.csv(rivm_filename, sep = ";", stringsAsFactors = FALSE) %>% 
+                                               select(Gemeente, Aantal) %>%
+                                               mutate(Gemeente = as.character(Gemeente)))
+    }, error = function(e) {
+        new_rivm_data <<- current_rivm_data
+    })
+    if (!identical(new_rivm_data, current_rivm_data)) {
+        write.csv(new_rivm_data, "program/data/rivm.csv")
+    }
 }
 
 get_map_data <- function() {
@@ -114,4 +129,16 @@ get_map_data <- function() {
 
 get_line_data <- function() {
     readRDS("program/data/line_data.rds")
+}
+
+get_rivm_data <- function() {
+    gemeentes <- read.csv("program/data/gemeentes.csv", stringsAsFactors = FALSE) %>% 
+        select(gemeente, latitude, longitude) %>% 
+        group_by_("gemeente") %>% 
+        summarise(lat = mean(latitude), lon = mean(longitude)) %>% 
+        rename(Gemeente = gemeente)
+    
+    read.csv("program/data/rivm.csv", stringsAsFactors = FALSE) %>%
+        filter(!is.na(Aantal)) %>%
+        left_join(gemeentes)
 }

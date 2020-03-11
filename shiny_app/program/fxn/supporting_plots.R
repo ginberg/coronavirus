@@ -23,6 +23,20 @@ get_map_chart <- function() {
             addPopups(112.27070, 30.97564, popup_content, options = popupOptions(closeButton = FALSE))
 }
 
+get_dutch_map_chart <- function() {
+    leaflet(g_dutch_map_data) %>% 
+            setView(lng = 6.104373, lat = 51.95596, zoom = 8) %>%
+            addProviderTiles('Esri.WorldImagery') %>%
+            addProviderTiles("CartoDB.PositronOnlyLabels") %>%
+            addCircles(lng = ~lon,
+                       lat = ~lat,
+                       weight = 1,
+                       radius = ~((sqrt(Aantal) + 1) * 1000),
+                       popup = paste0("<b>", g_dutch_map_data$Gemeente, "</b><br>", "Aantal: <font color='red'>", g_dutch_map_data$Aantal, "</font>"),
+                       color = "#FF0000",
+                       fillOpacity = 1)
+}
+
 get_line_chart <- function(data, title, show_decoration = FALSE, adjust_scale = FALSE) {
     plot_decorations <- NULL
     if (show_decoration) {

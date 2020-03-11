@@ -83,6 +83,10 @@ output$map <- renderLeaflet({
     get_map_chart()
 })
 
+output$dutchMap <- renderLeaflet({
+    get_dutch_map_chart()
+})
+
 output$chart_all_cases <- renderCanvasXpress({
     data  <- g_line_data
     title <- "Total Cases"
