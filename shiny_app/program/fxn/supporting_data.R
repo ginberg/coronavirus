@@ -111,7 +111,7 @@ if (g_live_data) {
     current_rivm_data <- read.csv("program/data/rivm.csv", stringsAsFactors = FALSE)
     new_rivm_data     <- NULL
     tryCatch({
-        rivm_filename <- glue("https://www.volksgezondheidenzorg.info/sites/default/files/map/detail_data/klik_corona{format(Sys.Date(), '%d%m%Y')}_2.csv")
+        rivm_filename <- glue("https://www.volksgezondheidenzorg.info/sites/default/files/map/detail_data/klik_corona{format(Sys.Date(), '%d%m%Y')}.csv")
         new_rivm_data <<- suppressWarnings(read.csv(rivm_filename, sep = ";", stringsAsFactors = FALSE) %>% 
                                                select(Gemeente, Aantal) %>%
                                                mutate(Gemeente = as.character(Gemeente)))
