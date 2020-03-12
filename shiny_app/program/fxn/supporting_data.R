@@ -27,7 +27,9 @@ get_all_line_data <- function(data, tab_name) {
         select(-c(3,4)) %>%
         mutate(Type = tab_name)
     colnames(result)[1:2] <- c("Province", "Country")
-    result
+    result %>%
+        mutate(Country = as.character(Country)) %>% 
+        mutate(Country = ifelse(Country == "Mainland China", "China", Country))
 }
 
 get_country_data <- function(data, country) {

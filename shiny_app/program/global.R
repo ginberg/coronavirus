@@ -16,7 +16,7 @@ library(leaflet)
 library(canvasXpress)
 library(glue)
 
-g_live_data      <- FALSE
+g_live_data      <- TRUE
 g_refresh_period <- 6*60*60*1000
 g_all_option     <- "All"
 g_confirmed      <- "Confirmed"
