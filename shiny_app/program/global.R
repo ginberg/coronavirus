@@ -15,6 +15,7 @@ library(dplyr)
 library(leaflet)
 library(canvasXpress)
 library(glue)
+library(rvest)
 
 g_live_data      <- TRUE
 g_refresh_period <- 6*60*60*1000

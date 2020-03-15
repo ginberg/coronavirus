@@ -113,10 +113,18 @@ if (g_live_data) {
     current_rivm_data <- read.csv("program/data/rivm.csv", stringsAsFactors = FALSE)
     new_rivm_data     <- NULL
     tryCatch({
-        rivm_filename <- glue("https://www.volksgezondheidenzorg.info/sites/default/files/map/detail_data/klik_corona{format(Sys.Date(), '%d%m%Y')}.csv")
-        new_rivm_data <<- suppressWarnings(read.csv(rivm_filename, sep = ";", stringsAsFactors = FALSE) %>% 
-                                               select(Gemeente, Aantal) %>%
-                                               mutate(Gemeente = as.character(Gemeente)))
+        rivm_url <- 'https://www.rivm.nl/coronavirus-kaart-van-nederland'
+        text     <- read_html(rivm_url) %>% 
+          html_nodes(xpath = '//*[@id="csvData"]')  %>%
+          html_text()
+        text     <- unlist(strsplit(text , "\n"))
+        text     <- text[5:length(text)]
+        new_rivm_data <-  do.call(rbind, lapply(text, FUN = function(x) {
+            parts <- unlist(strsplit(x, split = ";"))
+            Gemeente <- parts[1]
+            Aantal   <- as.numeric(parts[3])
+            data.frame(Gemeente, Aantal, stringsAsFactors = F)
+        }))
     }, error = function(e) {
         new_rivm_data <<- current_rivm_data
     })
