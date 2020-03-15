@@ -25,7 +25,7 @@ get_map_chart <- function() {
 
 get_dutch_map_chart <- function() {
     leaflet(g_dutch_map_data) %>% 
-            setView(lng = 6.104373, lat = 51.90596, zoom = 7.5) %>%
+            setView(lng = 5.304373, lat = 51.90596, zoom = 7.5) %>%
             addProviderTiles('Esri.WorldImagery') %>%
             addProviderTiles("CartoDB.PositronOnlyLabels") %>%
             addCircles(lng = ~lon,

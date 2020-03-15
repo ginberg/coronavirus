@@ -142,6 +142,13 @@ output$chart_country_compare <- renderCanvasXpress({
     }
 })
 
+output$dutch_all_cases <- renderCanvasXpress({
+    title <- "Total Cases Netherlands"
+    data <- get_country_data(g_all_line_data, "Netherlands")
+    data <- data[, colSums(data) > 0]
+    get_line_chart(data, title, show_decoration = FALSE)
+})
+
 output$total_stats <- renderUI({
     get_stats_block(g_map_data)
 })
@@ -149,8 +156,11 @@ output$total_stats <- renderUI({
 output$about_text <- renderUI({
     tags$div(style="text-align:center;",
              "This dashboard visualizes the spread of the Coronavirus 2019 using ",
-             tags$a(href='https://github.com/CSSEGISandData/COVID-19', "data"),
-             "from John Hopkins University. The dashboard is automatically updated twice a day.",
+             "Data retrieved from",
+             tags$a(href='https://github.com/CSSEGISandData/COVID-19', "John Hopkins University"),
+             "and", 
+             tags$a(href='https://www.rivm.nl/coronavirus-kaart-van-nederland', "RIVM."),
+             "The dashboard is automatically updated twice a day.",
              tags$p(), tags$a(href='https://github.com/ginberg/coronavirus', "Code on github"))
 })
 

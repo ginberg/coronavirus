@@ -52,8 +52,9 @@ ccPanel      <- tabPanel("Country comparison",
                                   column(width = 3, sliderInput("maxCountries", "Top Countries", value = 8, min = 1, max = 20))),
                          fluidRow(column(width = 12, canvasXpressOutput("chart_country_compare", height = "670px"))))
 
-dutchMapPanel     <- tabPanel("Netherlands (RIVM data)",
-                         leafletOutput("dutchMap", height = "700px"))
+dutchMapPanel     <- tabPanel("Netherlands",
+                              fluidRow(column(width = 6, leafletOutput("dutchMap", height = "700px")),
+                                       column(width = 6, canvasXpressOutput("dutch_all_cases", height = "700px"))))
 
 body2 <- shinydashboard::tabBox(id       = "outputTab",
                                 title    = NULL,
