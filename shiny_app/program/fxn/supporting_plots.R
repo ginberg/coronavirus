@@ -1,5 +1,8 @@
 ## Supporting plots
 
+bg_color   <- "#222d32"
+font_color <- "#fff"
+    
 get_map_chart <- function() {
     popup_content <- paste(sep = "<br/>",
                            "The virus likely started from",
@@ -45,8 +48,6 @@ get_line_chart <- function(data, title, show_decoration = FALSE, adjust_scale = 
                                                     x = 0.17, 
                                                     y = 0.06)))
     }
-    bg_color   <- "#222d32"
-    font_color <- "#fff"
     x_axis_title <- "Count"
     if (adjust_scale) {
         x_axis_title <- "Count (x1000)"
@@ -79,9 +80,7 @@ get_line_chart <- function(data, title, show_decoration = FALSE, adjust_scale = 
             smpLabelScaleFontFactor   = 0.3)
 }
 
-get_country_comparison_chart <- function(data, title, adjust_scale = FALSE) {
-    bg_color   <- "#222d32"
-    font_color <- "#fff"
+get_country_comparison_chart <- function(data, title, subtitle, adjust_scale = FALSE) {
     x_axis_title <- "Count"
     if (adjust_scale) {
         x_axis_title <- "Count (x1000)"
@@ -97,16 +96,50 @@ get_country_comparison_chart <- function(data, title, adjust_scale = FALSE) {
             smpTitleFontStyle = "italic",
             xAxis2Show        = FALSE,
             title             = title,
+            subtitle          = subtitle,
             legendPosition    = "right",
             background        = bg_color,
             axisTitleColor    = font_color,
             axisTickColor     = font_color,
             titleColor        = font_color,
+            subtitleColor     = font_color,
             legendColor       = font_color,
             decorationsColor  = font_color,
             smpLabelFontColor = font_color,
             xAxisTicks        = 10,
             xAxisTitle        = x_axis_title,
             decorationScaleFontFactor = 0.6,
-            smpLabelScaleFontFactor   = 0.3)
+            smpLabelScaleFontFactor   = 0.3,
+            titleScaleFontFactor      = 0.6,
+            subtitleScaleFontFactor   = 0.4)
+}
+
+get_country_comparison_bar_chart <- function(data, type, title, subtitle) {
+    colors <- NULL
+    if (type == g_confirmed) {
+        colors <- g_colors[1]
+    } else if (type == g_death) {
+        colors <- g_colors[2]
+    } else {
+        colors <- g_colors[3]
+    }
+    canvasXpress(
+        data              = data,
+        graphOrientation  = "horizontal",
+        graphType         = "Bar",
+        colors            = colors,
+        showLegend        = FALSE,
+        xAxis2Show        = FALSE,
+        background        = bg_color,
+        axisTitleColor    = font_color,
+        axisTickColor     = font_color,
+        titleColor        = font_color,
+        subtitleColor     = font_color,
+        legendColor       = font_color,
+        decorationsColor  = font_color,
+        smpLabelFontColor = font_color,
+        title             = title,
+        subtitle          = subtitle,
+        titleScaleFontFactor    = 0.6,
+        subtitleScaleFontFactor = 0.4)
 }

@@ -45,11 +45,14 @@ get_country_data <- function(data, country) {
         t() %>% as.data.frame()
 }
 
-get_type_data <- function(data, type, max_history, max_countries) {
-    data %>% 
+get_type_data <- function(data, type, max_countries, max_history = NULL) {
+    data <- data %>% 
         filter(Type == type) %>%
-        select(-c("Province", "Type")) %>%
-        select(c(1, seq(ncol(.) - (max_history + 1), ncol(.)))) %>%
+        select(-c("Province", "Type"))
+    if (!is.null(max_history)) {
+        data <- data %>% select(c(1, seq(ncol(.) - (max_history), ncol(.))))
+    }
+    data %>%
         group_by(Country) %>% 
         summarise_if(is.numeric, sum, na.rm = TRUE) %>% 
         tibble::column_to_rownames("Country") %>% 
@@ -129,7 +132,7 @@ if (g_live_data) {
         new_rivm_data <<- current_rivm_data
     })
     if (!identical(new_rivm_data, current_rivm_data)) {
-        write.csv(new_rivm_data, "program/data/rivm.csv")
+        write.csv(new_rivm_data, "program/data/rivm.csv", row.names = F)
     }
 }
 
@@ -151,4 +154,9 @@ get_rivm_data <- function() {
     read.csv("program/data/rivm.csv", stringsAsFactors = FALSE) %>%
         filter(!is.na(Aantal)) %>%
         left_join(gemeentes)
+}
+
+get_country_populations <- function() {
+    read.csv("program/data/population.csv", stringsAsFactors = F) %>%
+        mutate(population = population / 1000000)
 }

@@ -37,38 +37,25 @@ get_table_data <- reactive({
     g_map_data %>% select(1, 2, 5, 6, 7) %>% arrange(desc(Confirmed))
 })
 
-# ----------------------------------------
-# --          SHINY SERVER CODE         --
-# ----------------------------------------
-
-observe({
-    countries <- g_map_data %>% 
-        arrange(-Confirmed) %>% 
-        mutate(Country = ifelse(Country == "Others", glue("{Country} ({Province})"), Country)) %>%
-        pull(Country) %>% unique()
-    updateSelectizeInput(session, "countrySel",
-                         choices = c(g_all_option, countries),
-                         selected = character(0),
-                         options  = list(placeholder = "Type/Click then Select"))
+type_data <- reactive({
+    data      <- g_line_data
+    case_type <- input$caseType
+    if (!is.null(case_type) && case_type != "" && case_type %in% g_tabs) { 
+        max_countries    <- input$maxCountries
+        data <- get_type_data(g_all_line_data, case_type, max_countries)
+    }
+    data
 })
 
-observeEvent( autoInvalidate(), {
-    autoInvalidate()
-    loginfo("restarting app")
-    session$reload()
-}, ignoreInit = T)
-
-observeEvent(input$countrySel, {
-    country <-  trimws(gsub("\\(.*", "", input$countrySel))
-    
-    if (!is.null(country) && country != "" && country != g_all_option) {
-        map_center <- g_map_data %>% 
-            filter(Country == country) %>% 
-            slice(1:1) %>% 
-            select(Lat, Lon)
-        leafletProxy("map") %>%
-          setView(lng = map_center$Lon, lat = map_center$Lat, zoom = 4.5)
+recent_type_data <- reactive({
+    data      <- g_line_data
+    case_type <- input$caseType
+    if (!is.null(case_type) && case_type != "" && case_type %in% g_tabs) { 
+        max_countries    <- input$maxCountries
+        max_history_days <- input$maxHistory
+        data <- get_type_data(g_all_line_data, case_type, max_countries, max_history_days)
     }
+    data
 })
 
 # -- Setup Download Modules with Functions we want called
@@ -77,6 +64,10 @@ callModule(downloadableTable, "coronaDT",  ss_userAction.Log,
            list(csv = get_table_data, tsv = get_table_data),
            get_table_data,
            rownames = FALSE)
+
+# ----------------------------------------
+# --          SHINY SERVER CODE         --
+# ----------------------------------------
 
 
 output$map <- renderLeaflet({
@@ -130,16 +121,35 @@ output$chart_new_cases <- renderCanvasXpress({
 })
 
 output$chart_country_compare <- renderCanvasXpress({
-    data  <- g_line_data
-    case_type <- input$caseType
-    if (!is.null(case_type) && case_type != "" && case_type %in% g_tabs) { 
-        max_countries    <- input$maxCountries
-        max_history_days <- input$maxHistory
-        title <- glue("Daily {case_type} Cases - Last {max_history_days} days")
-        
-        data <- get_type_data(g_all_line_data, case_type, max_history_days, max_countries)
-        get_country_comparison_chart(data, title, adjust_scale = FALSE)
+    result <- NULL
+    data  <- recent_type_data()
+    if (!is.null(data)) { 
+        title    <- glue("Daily {input$caseType} Cases")
+        subtitle <- glue("Last {input$maxHistory} days")
+        result <- get_country_comparison_chart(data, title, subtitle, adjust_scale = FALSE)
     }
+    result
+})
+
+output$chart_country_rel <- renderCanvasXpress({
+    result <- NULL
+    data  <- type_data()
+    if (!is.null(data)) {
+        data <- data %>% 
+            rownames_to_column("country") %>%
+            mutate(total = rowSums(.[-1])) %>% arrange(desc(total)) %>% 
+            select(c(1, ncol(.))) %>% 
+            set_colnames(c("country", "cases")) %>%
+            left_join(g_country_pop) %>%
+            mutate(cases_per_million = cases / population) %>%
+            select(-c(population, cases)) %>% 
+            arrange(desc(cases_per_million)) %>%
+            column_to_rownames("country") %>% t()
+        title    <- glue("Total {input$caseType} Cases")
+        subtitle <- glue("Per million inhabitants")
+        result <- get_country_comparison_bar_chart(data, input$caseType, title, subtitle)
+    }
+    result
 })
 
 output$dutch_all_cases <- renderCanvasXpress({
@@ -179,5 +189,35 @@ output$country_stats <- renderUI({
         data <- g_map_data %>% filter(Country == country)
     }
     get_stats_block(data)
+})
+
+observe({
+    countries <- g_map_data %>% 
+        arrange(-Confirmed) %>% 
+        mutate(Country = ifelse(Country == "Others", glue("{Country} ({Province})"), Country)) %>%
+        pull(Country) %>% unique()
+    updateSelectizeInput(session, "countrySel",
+                         choices = c(g_all_option, countries),
+                         selected = character(0),
+                         options  = list(placeholder = "Type/Click then Select"))
+})
+
+observeEvent( autoInvalidate(), {
+    autoInvalidate()
+    loginfo("restarting app")
+    session$reload()
+}, ignoreInit = T)
+
+observeEvent(input$countrySel, {
+    country <-  trimws(gsub("\\(.*", "", input$countrySel))
+    
+    if (!is.null(country) && country != "" && country != g_all_option) {
+        map_center <- g_map_data %>% 
+            filter(Country == country) %>% 
+            slice(1:1) %>% 
+            select(Lat, Lon)
+        leafletProxy("map") %>%
+          setView(lng = map_center$Lon, lat = map_center$Lat, zoom = 4.5)
+    }
 })
     

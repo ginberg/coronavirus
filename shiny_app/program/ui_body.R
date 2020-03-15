@@ -47,10 +47,10 @@ ccPanel      <- tabPanel("Country comparison",
                                                         choices  = g_tabs,
                                                         multiple = FALSE,
                                                         width    = "100%")),
-                                  column(width = 1),
-                                  column(width = 3, sliderInput("maxHistory",   "History (days)", value = 10, min = 1, max = 45)),
-                                  column(width = 3, sliderInput("maxCountries", "Top Countries", value = 8, min = 1, max = 20))),
-                         fluidRow(column(width = 12, canvasXpressOutput("chart_country_compare", height = "670px"))))
+                                  column(width = 2, sliderInput("maxHistory",   "History (days)", value = 10, min = 1, max = 45)),
+                                  column(width = 3, sliderInput("maxCountries", "Top Countries", value = 12, min = 1, max = 20))),
+                         fluidRow(column(width = 8, canvasXpressOutput("chart_country_compare", height = "670px")),
+                                  column(width = 4, canvasXpressOutput("chart_country_rel", height = "670px"))))
 
 dutchMapPanel     <- tabPanel("Netherlands",
                               fluidRow(column(width = 6, leafletOutput("dutchMap", height = "700px")),

@@ -16,6 +16,8 @@ library(leaflet)
 library(canvasXpress)
 library(glue)
 library(rvest)
+library(tibble)
+library(magrittr)
 
 g_live_data      <- TRUE
 g_refresh_period <- 6*60*60*1000
@@ -25,6 +27,7 @@ g_recovered      <- "Recovered"
 g_death          <- "Death"
 g_tabs           <- c(g_confirmed, g_recovered, g_death)
 g_mainland_china <- "Mainland China"
+
 
 source(paste("program", "fxn", "supporting_data.R", sep = .Platform$file.sep))
 source(paste("program", "fxn", "supporting_plots.R", sep = .Platform$file.sep))
@@ -42,6 +45,7 @@ line_data        <- get_line_data()
 g_line_data      <- line_data[[1]]
 g_all_line_data  <- line_data[[2]]
 g_dutch_map_data <- get_rivm_data()
+g_country_pop    <- get_country_populations()
 rm(line_data)
 
 g_colors    <- c("orange", "red", "green")
