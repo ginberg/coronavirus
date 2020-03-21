@@ -25,10 +25,12 @@
 # -- Create Basic Elements
 totals_text <- div(style = "padding-top: 94px;", uiOutput("total_stats"))
 
-last_update_text <- div(style = "padding-top: 90%;", uiOutput("last_update"))
+log_scale_cb <- div(align = "center", style = "padding-top: 60%;", checkboxInput("log_scale", label = "Log Scale", value = FALSE))
+
+last_update_text <- div(style = "padding-top: 20%;", uiOutput("last_update"))
 
 # -- Register Basic Elements in the ORDER SHOWN in the UI
-add_ui_sidebar_basic(list(totals_text, last_update_text), append = FALSE, tabname = "Totals")
+add_ui_sidebar_basic(list(totals_text, log_scale_cb, last_update_text), append = FALSE, tabname = "Totals")
 
 
 # -- Create Advanced Elements

@@ -91,7 +91,7 @@ output$chart_all_cases <- renderCanvasXpress({
             adjust_scale <- FALSE
         }
     }
-    get_line_chart(data, title, show_decoration = FALSE, adjust_scale = adjust_scale)
+    get_line_chart(data, title, show_decoration = FALSE, adjust_scale = adjust_scale, log_scale = input$log_scale)
 })
 
 output$chart_new_cases <- renderCanvasXpress({
@@ -117,7 +117,7 @@ output$chart_new_cases <- renderCanvasXpress({
         mutate(Recovered = Recovered - lag(Recovered)) %>% 
         tibble::column_to_rownames("date") %>%
         t() %>% as.data.frame()
-    get_line_chart(new_data, title, show_decoration = show_decoration, adjust_scale = adjust_scale)
+    get_line_chart(new_data, title, show_decoration = show_decoration, adjust_scale = adjust_scale, log_scale = input$log_scale)
 })
 
 output$chart_country_compare <- renderCanvasXpress({
@@ -126,7 +126,7 @@ output$chart_country_compare <- renderCanvasXpress({
     if (!is.null(data)) { 
         title    <- glue("Daily {input$caseType} Cases")
         subtitle <- glue("Last {input$maxHistory} days")
-        result <- get_country_comparison_chart(data, title, subtitle, adjust_scale = FALSE)
+        result <- get_country_comparison_chart(data, title, subtitle, adjust_scale = FALSE, log_scale = input$log_scale)
     }
     result
 })
@@ -156,7 +156,7 @@ output$dutch_all_cases <- renderCanvasXpress({
     title <- "Total Cases Netherlands"
     data <- get_country_data(g_all_line_data, "Netherlands")
     data <- data[, colSums(data) > 0]
-    get_line_chart(data, title, show_decoration = FALSE)
+    get_line_chart(data, title, show_decoration = FALSE, log_scale = input$log_scale)
 })
 
 output$total_stats <- renderUI({

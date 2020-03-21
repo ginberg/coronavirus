@@ -61,8 +61,8 @@ body2 <- shinydashboard::tabBox(id       = "outputTab",
                                 width    = 12,
                                 selected = "Cases over Time",
                                 timePanel,
-                                mapPanel,
                                 ccPanel,
+                                mapPanel,
                                 dutchMapPanel)
 
 # -- Register Elements in the ORDER SHOWN in the UI

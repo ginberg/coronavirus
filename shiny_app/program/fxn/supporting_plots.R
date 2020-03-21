@@ -34,24 +34,30 @@ get_dutch_map_chart <- function() {
             addCircles(lng = ~lon,
                        lat = ~lat,
                        weight = 1,
-                       radius = ~((sqrt(Aantal) + 1) * 1000),
+                       radius = ~((sqrt(Aantal) + 1) * 600),
                        popup = paste0("<b>", g_dutch_map_data$Gemeente, "</b><br>", "Aantal: <font color='red'>", g_dutch_map_data$Aantal, "</font>"),
                        color = "#FF0000",
                        fillOpacity = 1)
 }
 
-get_line_chart <- function(data, title, show_decoration = FALSE, adjust_scale = FALSE) {
+get_line_chart <- function(data, title, show_decoration = FALSE, adjust_scale = FALSE, log_scale = FALSE) {
     plot_decorations <- NULL
-    if (show_decoration) {
-        plot_decorations <- list(marker = list(list(sample = list("2020-02-13"), 
-                                                    text = "The spike observed on Feb. 12\n is the result of a change in\n diagnosis classification for which 13,332\n clinically (rather than laboratory) confirmed\n cases were all reported as new cases", variable = "Confirmed", 
-                                                    x = 0.17, 
-                                                    y = 0.06)))
-    }
-    x_axis_title <- "Count"
-    if (adjust_scale) {
-        x_axis_title <- "Count (x1000)"
-        data <- data / 1000    
+    x_axis_transform <- FALSE
+    x_axis_title     <- "Count"
+    if (log_scale) {
+        x_axis_transform <- "log10"
+        x_axis_title     <- "log10(Count)"
+    } else {
+        if (show_decoration) {
+            plot_decorations <- list(marker = list(list(sample = list("2020-02-13"), 
+                                                        text = "The spike observed on Feb. 12\n is the result of a change in\n diagnosis classification for which 13,332\n clinically (rather than laboratory) confirmed\n cases were all reported as new cases", variable = "Confirmed", 
+                                                        x = 0.17, 
+                                                        y = 0.06)))
+        }
+        if (adjust_scale) {
+            x_axis_title <- "Count (x1000)"
+            data <- data / 1000    
+        }
     }
     canvasXpress(
             data              = data,
@@ -76,15 +82,22 @@ get_line_chart <- function(data, title, show_decoration = FALSE, adjust_scale = 
             smpLabelFontColor = font_color,
             xAxisTicks        = 10,
             xAxisTitle        = x_axis_title,
+            xAxisTransform    = x_axis_transform,
             decorationScaleFontFactor = 0.6,
             smpLabelScaleFontFactor   = 0.3)
 }
 
-get_country_comparison_chart <- function(data, title, subtitle, adjust_scale = FALSE) {
-    x_axis_title <- "Count"
-    if (adjust_scale) {
-        x_axis_title <- "Count (x1000)"
-        data <- data / 1000    
+get_country_comparison_chart <- function(data, title, subtitle, adjust_scale = FALSE, log_scale = FALSE) {
+    x_axis_title     <- "Count"
+    x_axis_transform <- FALSE
+    if (log_scale) {
+        x_axis_transform <- "log10"
+        x_axis_title     <- "log10(Count)"
+    } else {
+        if (adjust_scale) {
+            x_axis_title <- "Count (x1000)"
+            data <- data / 1000    
+        }
     }
     canvasXpress(
             data              = data,
@@ -108,6 +121,7 @@ get_country_comparison_chart <- function(data, title, subtitle, adjust_scale = F
             smpLabelFontColor = font_color,
             xAxisTicks        = 10,
             xAxisTitle        = x_axis_title,
+            xAxisTransform    = x_axis_transform,
             decorationScaleFontFactor = 0.6,
             smpLabelScaleFontFactor   = 0.3,
             titleScaleFontFactor      = 0.6,
