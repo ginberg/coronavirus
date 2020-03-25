@@ -25,7 +25,7 @@
 # -- Create Basic Elements
 totals_text <- div(style = "padding-top: 94px;", uiOutput("total_stats"))
 
-log_scale_cb <- div(align = "center", style = "padding-top: 60%;", checkboxInput("log_scale", label = "Log Scale", value = FALSE))
+log_scale_cb <- div(align = "center", style = "padding-top: 60%;", checkboxInput("log_scale", label = "Log Scale", value = TRUE))
 
 last_update_text <- div(style = "padding-top: 20%;", uiOutput("last_update"))
 
