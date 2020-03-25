@@ -34,7 +34,7 @@
 autoInvalidate <- reactiveTimer(g_refresh_period)
  
 get_table_data <- reactive({
-    g_map_data %>% select(1, 2, 5, 6, 7) %>% arrange(desc(Confirmed))
+    g_map_data %>% select(1, 2, 5, 6) %>% arrange(desc(Confirmed))
 })
 
 type_data <- reactive({
@@ -114,7 +114,6 @@ output$chart_new_cases <- renderCanvasXpress({
         tibble::rownames_to_column("date") %>%
         mutate(Confirmed = Confirmed - lag(Confirmed)) %>% 
         mutate(Death = Death - lag(Death)) %>% 
-        mutate(Recovered = Recovered - lag(Recovered)) %>% 
         tibble::column_to_rownames("date") %>%
         t() %>% as.data.frame()
     get_line_chart(new_data, title, show_decoration = show_decoration, adjust_scale = adjust_scale, log_scale = input$log_scale)

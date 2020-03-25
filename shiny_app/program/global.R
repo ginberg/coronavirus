@@ -23,9 +23,8 @@ g_live_data      <- TRUE
 g_refresh_period <- 6*60*60*1000
 g_all_option     <- "All"
 g_confirmed      <- "Confirmed"
-g_recovered      <- "Recovered"
 g_death          <- "Death"
-g_tabs           <- c(g_confirmed, g_recovered, g_death)
+g_tabs           <- c(g_confirmed, g_death)
 g_mainland_china <- "Mainland China"
 
 
@@ -48,6 +47,6 @@ g_dutch_map_data <- get_rivm_data()
 g_country_pop    <- get_country_populations()
 rm(line_data)
 
-g_colors    <- c("orange", "red", "green")
+g_colors    <- c("orange", "red")
 shinyOptions(plot.autocolors = TRUE)
 

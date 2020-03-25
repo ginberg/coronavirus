@@ -4,12 +4,10 @@ get_all_data <- function(tab_name) {
     result <- NULL
     base_URL <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/"
     if (tab_name == g_confirmed) {
-        result <- read.csv(glue("{base_URL}time_series_19-covid-Confirmed.csv"))
-    } else if (tab_name == g_recovered) {
-        result <- read.csv(glue("{base_URL}time_series_19-covid-Recovered.csv"))
-    } else if (tab_name == g_death) {
-        result <- read.csv(glue("{base_URL}time_series_19-covid-Deaths.csv"))
-    }
+        result <- read.csv(glue("{base_URL}time_series_covid19_confirmed_global.csv"))
+     } else if (tab_name == g_death) {
+        result <- read.csv(glue("{base_URL}time_series_covid19_deaths_global.csv"))
+     }
     colnames(result) <- gsub("X", "0", colnames(result))
     result
 }
@@ -89,25 +87,20 @@ get_summarized_line_data <- function(data, tab_name) {
 
 if (g_live_data) {
     confirmed_data  <- get_all_data(g_confirmed)
-    recovered_data  <- get_all_data(g_recovered)
     death_data      <- get_all_data(g_death)
      
     confirmed_cases <- get_map_data(confirmed_data, g_confirmed)
-    recovered_cases <- get_map_data(recovered_data, g_recovered)
     death_cases     <- get_map_data(death_data, g_death)
     
     map_data <- confirmed_cases %>%
-        left_join(recovered_cases) %>%
         left_join(death_cases)
     
     line_data <- rbind.fill(get_summarized_line_data(confirmed_data, g_confirmed),
-                            get_summarized_line_data(death_data, g_death),
-                            get_summarized_line_data(recovered_data, g_recovered)) %>% 
+                            get_summarized_line_data(death_data, g_death)) %>% 
         tibble::column_to_rownames("Type")
     
     all_line_data <- rbind.fill(get_all_line_data(confirmed_data, g_confirmed),
-                                get_all_line_data(death_data, g_death),
-                                get_all_line_data(recovered_data, g_recovered)) 
+                                get_all_line_data(death_data, g_death)) 
     
     saveRDS(map_data,  "program/data/map_data.rds")
     saveRDS(list(line_data, all_line_data), "program/data/line_data.rds")
