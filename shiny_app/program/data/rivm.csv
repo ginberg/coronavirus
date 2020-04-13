@@ -1,355 +1,354 @@
 "Gemeente","Aantal"
-"'s-Hertogenbosch",67
-"Aa en Hunze",1
-"Aalsmeer",9
-"Aalten",1
-"Achtkarspelen",0
-"Alblasserdam",4
-"Albrandswaard",18
-"Alkmaar",20
-"Almelo",8
-"Almere",21
-"Alphen aan den Rijn",20
-"Alphen-Chaam",15
-"Altena",28
+"Aalsmeer",28
+"Aalten",23
+"Achtkarspelen",5
+"Alblasserdam",24
+"Albrandswaard",57
+"Alkmaar",159
+"Almelo",64
+"Almere",154
+"Alphen aan den Rijn",102
+"Alphen-Chaam",40
+"Altena",82
 "Ameland",0
-"Amersfoort",44
-"Amstelveen",33
-"Amsterdam",250
-"Apeldoorn",29
-"Appingedam",0
-"Arnhem",23
-"Assen",5
-"Asten",6
-"Baarle-Nassau",1
-"Baarn",2
-"Barendrecht",15
-"Barneveld",12
-"Beek",9
-"Beekdaelen",29
-"Beemster",1
-"Beesel",6
-"Berg en Dal",35
-"Bergeijk",5
-"Bergen (L)",1
-"Bergen (NH)",12
-"Bergen op Zoom",12
-"Berkelland",2
-"Bernheze",67
-"Best",17
-"Beuningen",13
-"Beverwijk",11
-"Bladel",14
-"Blaricum",4
-"Bloemendaal",13
-"Bodegraven-Reeuwijk",5
-"Boekel",42
-"Borger-Odoorn",0
-"Borne",8
-"Borsele",4
-"Boxmeer",9
-"Boxtel",15
-"Breda",167
-"Brielle",1
-"Bronckhorst",7
-"Brummen",4
-"Brunssum",17
-"Bunnik",6
-"Bunschoten",1
-"Buren",6
-"Capelle aan den IJssel",13
-"Castricum",10
-"Coevorden",15
-"Cranendonck",23
-"Cuijk",6
-"Culemborg",8
-"Dalfsen",11
-"Dantumadiel",0
-"De Bilt",27
-"De Fryske Marren",8
-"De Ronde Venen",8
-"De Wolden",3
-"Delft",17
-"Delfzijl",1
-"Den Helder",5
-"Deurne",25
-"Deventer",20
-"Diemen",4
-"Dinkelland",17
-"Doesburg",4
-"Doetinchem",8
-"Dongen",4
-"Dordrecht",23
-"Drechterland",3
-"Drimmelen",17
-"Dronten",11
-"Druten",6
-"Duiven",2
-"Echt-Susteren",15
-"Edam-Volendam",7
-"Ede",22
-"Eemnes",1
-"Eersel",13
-"Eijsden-Margraten",15
-"Eindhoven",68
-"Elburg",4
-"Emmen",7
-"Enkhuizen",10
-"Enschede",20
-"Epe",13
-"Ermelo",14
-"Etten-Leur",24
-"Geertruidenberg",10
-"Geldrop-Mierlo",9
-"Gemert-Bakel",64
-"Gennep",7
-"Gilze en Rijen",16
-"Goeree-Overflakkee",43
-"Goes",4
-"Goirle",16
-"Gooise Meren",12
-"Gorinchem",4
-"Gouda",17
-"Grave",11
-"Groningen",53
-"Gulpen-Wittem",4
-"Haaksbergen",3
-"Haaren",12
-"Haarlem",41
-"Haarlemmermeer",23
-"Halderberge",8
-"Hardenberg",6
-"Harderwijk",9
-"Hardinxveld-Giessendam",6
-"Harlingen",3
-"Hattem",2
-"Heemskerk",7
-"Heemstede",16
-"Heerde",15
-"Heerenveen",3
-"Heerhugowaard",15
-"Heerlen",46
-"Heeze-Leende",7
-"Heiloo",8
-"Hellendoorn",6
-"Hellevoetsluis",5
-"Helmond",55
-"Hendrik-Ido-Ambacht",2
-"Hengelo (O)",16
-"Het Hogeland",1
-"Heumen",11
-"Heusden",19
-"Hillegom",3
-"Hilvarenbeek",8
-"Hilversum",7
-"Hoeksche Waard",31
-"Hof van Twente",5
-"Hollands Kroon",10
-"Hoogeveen",6
-"Hoorn",12
-"Horst aan de Maas",17
-"Houten",29
-"Huizen",3
-"Hulst",0
-"IJsselstein",16
-"Kaag en Braassem",4
-"Kampen",20
-"Kapelle",2
-"Katwijk",6
-"Kerkrade",17
-"Koggenland",4
-"Krimpen aan den IJssel",3
-"Krimpenerwaard",12
-"Laarbeek",17
-"Landerd",25
-"Landgraaf",18
-"Landsmeer",6
-"Langedijk",12
-"Lansingerland",24
-"Laren",3
-"Leeuwarden",10
-"Leiden",20
-"Leiderdorp",2
-"Leidschendam-Voorburg",13
-"Lelystad",24
-"Leudal",26
-"Leusden",9
-"Lingewaard",11
-"Lisse",1
-"Lochem",2
-"Loon op Zand",20
-"Lopik",10
-"Loppersum",0
-"Losser",1
-"Maasdriel",3
-"Maasgouw",9
-"Maassluis",7
-"Maastricht",94
-"Medemblik",4
-"Meerssen",8
-"Meierijstad",139
-"Meppel",3
-"Middelburg",6
-"Midden-Delfland",2
-"Midden-Drenthe",1
-"Midden-Groningen",2
-"Mill en Sint Hubert",5
-"Moerdijk",4
-"Molenlanden",13
-"Montferland",3
-"Montfoort",3
-"Mook en Middelaar",5
-"Neder-Betuwe",11
-"Nederweert",11
-"Nieuwegein",11
-"Nieuwkoop",4
-"Nijkerk",8
-"Nijmegen",93
-"Nissewaard",17
-"Noardeast-Fryslân",3
-"Noord-Beveland",1
-"Noordenveld",1
-"Noordoostpolder",4
-"Noordwijk",6
-"Nuenen, Gerwen en Nederwetten",4
-"Nunspeet",22
-"Oegstgeest",8
-"Oirschot",4
-"Oisterwijk",16
-"Oldambt",0
-"Oldebroek",8
-"Oldenzaal",8
-"Olst-Wijhe",4
-"Ommen",6
-"Oost Gelre",6
-"Oosterhout",23
-"Ooststellingwerf",0
-"Oostzaan",5
-"Opmeer",0
-"Opsterland",3
-"Oss",73
-"Oude IJsselstreek",4
-"Ouder-Amstel",7
-"Oudewater",7
-"Overbetuwe",33
-"Papendrecht",5
-"Peel en Maas",79
-"Pekela",2
-"Pijnacker-Nootdorp",14
-"Purmerend",23
-"Putten",3
-"Raalte",6
-"Reimerswaal",6
-"Renkum",11
-"Renswoude",0
-"Reusel-De Mierden",1
-"Rheden",15
-"Rhenen",1
-"Ridderkerk",7
-"Rijssen-Holten",4
-"Rijswijk",8
-"Roerdalen",10
-"Roermond",26
-"Roosendaal",18
-"Rotterdam",163
+"Amersfoort",115
+"Amstelveen",197
+"Amsterdam",1166
+"Apeldoorn",157
+"Appingedam",2
+"Arnhem",141
+"Assen",29
+"Asten",39
+"Baarle-Nassau",4
+"Baarn",25
+"Barendrecht",68
+"Barneveld",70
+"Beek",24
+"Beekdaelen",68
+"Beemster",8
+"Beesel",31
+"Berg en Dal",119
+"Bergeijk",33
+"Bergen (L.)",10
+"Bergen (NH.)",45
+"Bergen op Zoom",54
+"Berkelland",29
+"Bernheze",187
+"Best",45
+"Beuningen",37
+"Beverwijk",55
+"Bladel",38
+"Blaricum",17
+"Bloemendaal",37
+"Bodegraven-Reeuwijk",28
+"Boekel",74
+"Borger-Odoorn",4
+"Borne",39
+"Borsele",17
+"Boxmeer",61
+"Boxtel",39
+"Breda",356
+"Brielle",23
+"Bronckhorst",26
+"Brummen",19
+"Brunssum",53
+"Bunnik",19
+"Bunschoten",24
+"Buren",21
+"Capelle aan den IJssel",153
+"Castricum",53
+"Coevorden",40
+"Cranendonck",125
+"Cuijk",37
+"Culemborg",37
+"Dalfsen",49
+"Dantumadiel",6
+"De Bilt",77
+"De Fryske Marren",42
+"De Ronde Venen",53
+"De Wolden",24
+"Delft",83
+"Delfzijl",13
+"Den Helder",25
+"Deurne",107
+"Deventer",109
+"Diemen",20
+"Dinkelland",59
+"Doesburg",15
+"Doetinchem",54
+"Dongen",51
+"Dordrecht",150
+"Drechterland",32
+"Drimmelen",42
+"Dronten",56
+"Druten",67
+"Duiven",27
+"Echt-Susteren",62
+"Edam-Volendam",45
+"Ede",114
+"Eemnes",10
+"Eersel",40
+"Eijsden-Margraten",105
+"Eindhoven",294
+"Elburg",59
+"Emmen",52
+"Enkhuizen",25
+"Enschede",135
+"Epe",69
+"Ermelo",68
+"Etten-Leur",108
+"Geertruidenberg",20
+"Geldrop-Mierlo",63
+"Gemert-Bakel",133
+"Gennep",38
+"Gilze en Rijen",50
+"Goeree-Overflakkee",211
+"Goes",40
+"Goirle",58
+"Gooise Meren",71
+"Gorinchem",99
+"Gouda",132
+"Grave",40
+"Groningen",134
+"Gulpen-Wittem",38
+"Haaksbergen",39
+"Haaren",30
+"Haarlem",211
+"Haarlemmermeer",151
+"Halderberge",43
+"Hardenberg",116
+"Harderwijk",60
+"Hardinxveld-Giessendam",25
+"Harlingen",10
+"Hattem",33
+"Heemskerk",67
+"Heemstede",77
+"Heerde",85
+"Heerenveen",55
+"Heerhugowaard",76
+"Heerlen",189
+"Heeze-Leende",38
+"Heiloo",32
+"Hellendoorn",41
+"Hellevoetsluis",47
+"Helmond",207
+"Hendrik-Ido-Ambacht",22
+"Hengelo",97
+"Het Hogeland",22
+"Heumen",42
+"Heusden",77
+"Hillegom",20
+"Hilvarenbeek",27
+"Hilversum",64
+"Hoeksche Waard",148
+"Hof van Twente",47
+"Hollands Kroon",48
+"Hoogeveen",40
+"Hoorn",51
+"Horst aan de Maas",81
+"Houten",86
+"Huizen",48
+"Hulst",24
+"IJsselstein",67
+"Kaag en Braassem",14
+"Kampen",196
+"Kapelle",15
+"Katwijk",73
+"Kerkrade",89
+"Koggenland",24
+"Krimpen aan den IJssel",37
+"Krimpenerwaard",91
+"Laarbeek",70
+"Landerd",92
+"Landgraaf",80
+"Landsmeer",17
+"Langedijk",34
+"Lansingerland",117
+"Laren",20
+"Leeuwarden",47
+"Leiden",89
+"Leiderdorp",18
+"Leidschendam-Voorburg",54
+"Lelystad",77
+"Leudal",118
+"Leusden",30
+"Lingewaard",56
+"Lisse",13
+"Lochem",40
+"Loon op Zand",42
+"Lopik",28
+"Loppersum",2
+"Losser",15
+"Maasdriel",25
+"Maasgouw",49
+"Maassluis",37
+"Maastricht",392
+"Medemblik",48
+"Meerssen",48
+"Meierijstad",372
+"Meppel",24
+"Middelburg",34
+"Midden-Delfland",11
+"Midden-Drenthe",17
+"Midden-Groningen",20
+"Mill en Sint Hubert",19
+"Moerdijk",40
+"Molenlanden",70
+"Montferland",32
+"Montfoort",29
+"Mook en Middelaar",22
+"Neder-Betuwe",60
+"Nederweert",38
+"Nieuwegein",64
+"Nieuwkoop",29
+"Nijkerk",41
+"Nijmegen",370
+"Nissewaard",97
+"Noardeast-Fryslân",22
+"Noord-Beveland",5
+"Noordenveld",11
+"Noordoostpolder",33
+"Noordwijk",26
+"Nuenen, Gerwen en Nederwetten",34
+"Nunspeet",102
+"Oegstgeest",27
+"Oirschot",35
+"Oisterwijk",46
+"Oldambt",6
+"Oldebroek",71
+"Oldenzaal",39
+"Olst-Wijhe",29
+"Ommen",32
+"Oost Gelre",34
+"Oosterhout",71
+"Ooststellingwerf",2
+"Oostzaan",17
+"Opmeer",4
+"Opsterland",16
+"Oss",313
+"Oude IJsselstreek",33
+"Ouder-Amstel",22
+"Oudewater",39
+"Overbetuwe",90
+"Papendrecht",38
+"Peel en Maas",215
+"Pekela",4
+"Pijnacker-Nootdorp",54
+"Purmerend",134
+"Putten",16
+"Raalte",51
+"Reimerswaal",20
+"Renkum",35
+"Renswoude",10
+"Reusel-De Mierden",14
+"Rheden",55
+"Rhenen",13
+"Ridderkerk",68
+"Rijssen-Holten",71
+"Rijswijk",50
+"Roerdalen",36
+"Roermond",93
+"Roosendaal",117
+"Rotterdam",1180
 "Rozendaal",2
-"Rucphen",6
-"Schagen",10
-"Scherpenzeel",2
-"Schiedam",10
+"Rucphen",35
+"s-Gravenhage",581
+"Schagen",55
+"Scherpenzeel",16
+"Schiedam",78
 "Schiermonnikoog",0
-"Schouwen-Duiveland",3
-"Simpelveld",7
-"Sint Anthonis",13
-"Sint-Michielsgestel",17
-"Sittard-Geleen",84
-"Sliedrecht",4
-"Sluis",5
-"Smallingerland",3
-"Soest",20
-"Someren",7
-"Son en Breugel",13
-"Stadskanaal",0
-"Staphorst",4
-"Stede Broec",9
-"Steenbergen",9
-"Steenwijkerland",5
-"Stein",24
-"Stichtse Vecht",16
-"Súdwest-Fryslân",6
-"Terneuzen",6
-"Terschelling",0
-"Texel",3
-"Teylingen",7
-"Tholen",11
-"Tiel",8
-"Tilburg",211
-"Tubbergen",4
-"Twenterand",3
-"Tynaarlo",10
-"Tytsjerksteradiel",1
-"Uden",92
-"Uitgeest",4
-"Uithoorn",4
-"Urk",7
-"Utrecht",160
-"Utrechtse Heuvelrug",14
-"Vaals",3
-"Valkenburg aan de Geul",8
-"Valkenswaard",8
-"Veendam",0
-"Veenendaal",6
-"Veere",6
-"Veldhoven",14
-"Velsen",15
-"Venlo",40
-"Venray",13
-"Vijfheerenlanden",18
-"Vlaardingen",18
+"Schouwen-Duiveland",23
+"Simpelveld",28
+"Sint Anthonis",50
+"Sint-Michielsgestel",62
+"Sittard-Geleen",217
+"Sliedrecht",29
+"Sluis",14
+"Smallingerland",25
+"Soest",58
+"Someren",65
+"Son en Breugel",50
+"Stadskanaal",3
+"Staphorst",37
+"Stede Broec",37
+"Steenbergen",45
+"Steenwijkerland",46
+"Stein",68
+"Stichtse Vecht",62
+"Súdwest-Fryslân",50
+"Terneuzen",72
+"Terschelling",1
+"Texel",10
+"Teylingen",29
+"Tholen",100
+"Tiel",63
+"Tilburg",476
+"Tubbergen",60
+"Twenterand",37
+"Tynaarlo",31
+"Tytsjerksteradiel",14
+"Uden",210
+"Uitgeest",16
+"Uithoorn",32
+"Urk",41
+"Utrecht",533
+"Utrechtse Heuvelrug",63
+"Vaals",19
+"Valkenburg aan de Geul",46
+"Valkenswaard",90
+"Veendam",7
+"Veenendaal",70
+"Veere",19
+"Veldhoven",66
+"Velsen",169
+"Venlo",191
+"Venray",68
+"Vijfheerenlanden",141
+"Vlaardingen",123
 "Vlieland",0
-"Vlissingen",8
-"Voerendaal",5
-"Voorschoten",3
-"Voorst",3
-"Vught",19
-"Waadhoeke",0
-"Waalre",3
-"Waalwijk",29
-"Waddinxveen",4
-"Wageningen",3
-"Wassenaar",5
-"Waterland",10
-"Weert",17
-"Weesp",2
-"West Betuwe",17
-"West Maas en Waal",8
-"Westerkwartier",8
-"Westerveld",2
-"Westervoort",2
-"Westerwolde",0
-"Westland",25
-"Weststellingwerf",1
-"Westvoorne",8
-"Wierden",0
-"Wijchen",23
-"Wijdemeren",1
-"Wijk bij Duurstede",6
-"Winterswijk",2
-"Woensdrecht",4
-"Woerden",19
-"Wormerland",2
-"Woudenberg",4
-"Zaanstad",20
-"Zaltbommel",7
-"Zandvoort",6
-"Zeewolde",4
-"Zeist",20
-"Zevenaar",10
-"Zoetermeer",8
-"Zoeterwoude",1
-"Zuidplas",3
-"Zundert",11
-"Zutphen",6
-"Zwartewaterland",22
-"Zwijndrecht",8
-"Zwolle",40
+"Vlissingen",43
+"Voerendaal",23
+"Voorschoten",23
+"Voorst",41
+"Vught",72
+"Waadhoeke",55
+"Waalre",20
+"Waalwijk",94
+"Waddinxveen",31
+"Wageningen",26
+"Wassenaar",29
+"Waterland",21
+"Weert",94
+"Weesp",27
+"West Betuwe",97
+"West Maas en Waal",51
+"Westerkwartier",47
+"Westerveld",23
+"Westervoort",16
+"Westerwolde",5
+"Westland",135
+"Weststellingwerf",11
+"Westvoorne",20
+"Wierden",30
+"Wijchen",84
+"Wijdemeren",16
+"Wijk bij Duurstede",21
+"Winterswijk",18
+"Woensdrecht",20
+"Woerden",91
+"Wormerland",29
+"Woudenberg",19
+"Zaanstad",212
+"Zaltbommel",38
+"Zandvoort",26
+"Zeewolde",18
+"Zeist",86
+"Zevenaar",55
+"Zoetermeer",79
+"Zoeterwoude",7
+"Zuidplas",63
+"Zundert",44
+"Zutphen",44
+"Zwartewaterland",103
+"Zwijndrecht",57
+"Zwolle",214

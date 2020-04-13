@@ -16,7 +16,7 @@ get_map_chart <- function() {
             addCircles(lng = ~Lon,
                        lat = ~Lat,
                        weight = 1,
-                       radius = ~((sqrt(Confirmed) + 25) * 1000),
+                       radius = ~((sqrt(Confirmed) + 25) * 500),
                        popup = paste0(ifelse(is.na(g_map_data$Province) | g_map_data$Province == "", paste0("<b>", g_map_data$Country, "</b>"), paste0("<b>", g_map_data$Province, "</b>:", g_map_data$Country)), "<br>",
                                       "Confirmed: <font color='orange'>", g_map_data$Confirmed, "</font><br>",
                                       "Deaths:    <font color='red'>", g_map_data$Death,        "</font><br>"),
@@ -33,7 +33,7 @@ get_dutch_map_chart <- function() {
             addCircles(lng = ~lon,
                        lat = ~lat,
                        weight = 1,
-                       radius = ~((sqrt(Aantal) + 1) * 600),
+                       radius = ~((sqrt(Aantal) + 1) * 200),
                        popup = paste0("<b>", g_dutch_map_data$Gemeente, "</b><br>", "Aantal: <font color='red'>", g_dutch_map_data$Aantal, "</font>"),
                        color = "#FF0000",
                        fillOpacity = 1)
