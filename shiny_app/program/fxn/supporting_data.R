@@ -118,7 +118,7 @@ if (g_live_data) {
         new_rivm_data <-  do.call(rbind, lapply(text, FUN = function(x) {
             parts <- unlist(strsplit(x, split = ";"))
             Gemeente <- parts[2]
-            Aantal   <- as.numeric(parts[3])
+            Aantal   <- as.numeric(parts[6])
             data.frame(Gemeente, Aantal, stringsAsFactors = F)
         }))
     }, error = function(e) {

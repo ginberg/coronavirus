@@ -48,7 +48,7 @@ ccPanel      <- tabPanel("Country comparison",
                                                         multiple = FALSE,
                                                         width    = "100%")),
                                   column(width = 2, sliderInput("maxHistory",   "History (days)", value = 10, min = 1, max = 45)),
-                                  column(width = 3, sliderInput("maxCountries", "Top Countries", value = 12, min = 1, max = 20))),
+                                  column(width = 3, sliderInput("maxCountries", "Top Countries", value = 15, min = 1, max = 20))),
                          fluidRow(column(width = 8, canvasXpressOutput("chart_country_compare", height = "670px")),
                                   column(width = 4, canvasXpressOutput("chart_country_rel", height = "670px"))))
 

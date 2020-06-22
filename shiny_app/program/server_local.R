@@ -136,7 +136,8 @@ output$chart_country_rel <- renderCanvasXpress({
     if (!is.null(data)) {
         data <- data %>% 
             rownames_to_column("country") %>%
-            mutate(total = rowSums(.[-1])) %>% arrange(desc(total)) %>% 
+            mutate(total = rowSums(.[-1])) %>% 
+            arrange(desc(total)) %>% 
             select(c(1, ncol(.))) %>% 
             set_colnames(c("country", "cases")) %>%
             left_join(g_country_pop) %>%
